@@ -1,0 +1,24 @@
+version: "3"
+services:
+  frontend:
+    container_name: to_do_web
+    build:
+      context: ./client
+      dockerfile: Dockerfile
+    image: stku/to_do_web
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./client:/usr/src/app
+      - /usr/src/app/node_modules
+  backend:
+    container_name: to_do_server
+    build:
+      context: ./server
+      dockerfile: Dockerfile
+    image: stku/to_do_server
+    ports:
+      - "49170:49170"
+    volumes:
+      - ./server:/usr/src/app
+      - /usr/src/app/node_modules

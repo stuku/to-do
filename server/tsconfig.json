@@ -1,0 +1,26 @@
+{
+  "compilerOptions": {
+    "target": "es6",
+    "module": "commonjs",
+    "outDir": "dist",
+    "rootDir": ".",
+    "strict": true,
+    "baseUrl": ".",
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "experimentalDecorators": true,
+    "paths": {
+      "@config/*": ["src/config/*"],
+      "@enums/*": ["src/enums/*"],
+      "@models/*": ["src/models/*"],
+      "@repos/*": ["src/repos/*"],
+      "@routes/*": ["src/routes/*"],
+      "@services/*": ["src/services/*"],
+      "@spec/*": ["spec/*"],
+      "@util/*": ["src/util/*"]
+    }
+  },
+  "include": ["src/**/*.ts", "src/config/swagger.js"],
+  "exclude": ["src/types/*.ts", "node_modules", ".vscode"]
+}
