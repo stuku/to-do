@@ -20,7 +20,8 @@ A To-Do List with features like create, edit, filter, prioritize, etc.
     - File Structure: create-react-app (template Typescript)
     - docker
 - Server-side Implementation:
-    - enums, interfaces, mocked-orm
+    - Db: mongoose
+    - enums, interfaces, models
     - APIs, swagger
         - CRUD, filter, prioritize, etc.
     - Unit Tests
@@ -32,4 +33,3 @@ A To-Do List with features like create, edit, filter, prioritize, etc.
 ### Phase 2 (N2H)
 - Add "User" as option into "To-do" items
 - Optimize coding, validations
-- mongoose
