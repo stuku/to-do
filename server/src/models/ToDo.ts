@@ -2,9 +2,10 @@ import { Document, model, Schema } from "mongoose";
 import { EStatus } from "@enums/to-do";
 
 export interface IToDo extends Document {
-    name: string
-    description?: string
-    status: EStatus
+    _id: string;
+    name: string;
+    description?: string;
+    status: EStatus;
 }
 
 const toDoSchema: Schema = new Schema(
@@ -18,7 +19,7 @@ const toDoSchema: Schema = new Schema(
             required: true,
         },
         status: {
-            type: EStatus,
+            type: typeof EStatus,
             default: EStatus.TO_DO
         },
     },

@@ -9,9 +9,12 @@
     "resolveJsonModule": true,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
+    "moduleResolution": "node",
     "experimentalDecorators": true,
     "paths": {
       "@config/*": ["src/config/*"],
+      "@controllers/*": ["src/controllers/*"],
+      "@dist/*": ["dist/*"],
       "@enums/*": ["src/enums/*"],
       "@models/*": ["src/models/*"],
       "@repos/*": ["src/repos/*"],

@@ -6,14 +6,17 @@ import { MONGODB_URL } from "./secrets";
 import mongoose from "mongoose";
 import morgan from "morgan";
 import path from "path";
+import { RegisterRoutes } from "@routes/routes";
 import { Request, Response } from "express";
-import routes from "@routes/index";
+import ROUTE_PATH from "@config/path";
+import { router } from "@routes/index";
 import { Server } from "http";
+import swaggerUi from "swagger-ui-express";
 
 interface IServer {
-    configureMiddleware(): void
-    setRoutes(): void
-    start(port: string | number): void
+    configureMiddleware(): void;
+    setRoutes(): void;
+    start(port: string | number): void;
 }
 
 
@@ -37,17 +40,16 @@ export class AppServer implements IServer {
     }
 
     public configureMiddleware(): void {
-        // Dev logger
-        this._app.use(morgan("tiny"));
+        this._app.use(morgan("tiny"))
+            .use(bodyParser.json())
+            .use(bodyParser.urlencoded({ extended: true }))
+            .use(cors())
+            .use(ROUTE_PATH.API_DOC, swaggerUi.serve, async (_req: Request, res: Response): Promise<Response> => {
+                return res.send(
+                    swaggerUi.generateHTML(await import("@spec/swagger.json"))
+                );
+            });
 
-        // Required for POST requests
-        this._app.use(bodyParser.json());
-        this._app.use(bodyParser.urlencoded({ extended: true }));
-
-        // CORS
-        this._app.use(cors());
-
-        // Connect to MongoDB
         mongoose.connect(MONGODB_URL).then(
             () => { /** ready to use. The `mongoose.connect()` promise resolves to undefined. */ },
         ).catch((error: Error) => {
@@ -57,14 +59,17 @@ export class AppServer implements IServer {
     }
 
     public setRoutes(): void {
-        this._app.use(express.static(path.join(__dirname, "build")));
-        this._app.get("/", (_req: Request, res: Response): void => {
-            res.sendFile(path.join(__dirname, "build", "index.html"));
-        });
-        this._app.get("/express_backend", (_req: Request, res: Response): void => {
-            res.send({ express: "YOUR EXPRESS BACKEND IS CONNECTED TO REACT" });
-        });
-        this._app.use(API_PREFIX, routes);
+        for (const route of router) {
+            this._app.use(API_PREFIX + route.getPrefix(), route.getRouter());
+        }
+
+        this._app.use(express.static(path.join(__dirname, "build")))
+            .get("/", (_req: Request, res: Response): void => {
+                res.sendFile(path.join(__dirname, "build", "index.html"));
+            });
+
+        // tsoa
+        RegisterRoutes(this._app);
     }
 
     public start(port: string | number): void {
