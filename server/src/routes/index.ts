@@ -1,21 +1,7 @@
-import { Router } from "express";
+
+import { CustomRoute } from "../types/Route";
 import ToDoRoute from "./ToDo";
 
-abstract class Route {
-    protected router = Router();
-    protected prefix: string = "/";
-    protected abstract setRoutes(): void;
-    
-    public getRouter() {
-        return this.router;
-    }
-    public getPrefix() {
-        return this.prefix;
-    }
-}
-
-export const router: Array<Route> = [
+export const router: Array<CustomRoute> = [
     new ToDoRoute(),
 ];
-
-export default Route;

@@ -35,7 +35,7 @@ export function RegisterRoutes(app: express.Router) {
     //  NOTE: If you do not see routes for all of your controllers in this file, then you might not have informed tsoa of where to look
     //      Please look into the "controllerPathGlobs" config option described in the readme: https://github.com/lukeautry/tsoa
     // ###########################################################################################################
-        app.get('/undefined',
+        app.get('/to-do',
 
             function ToDoController_getAll(request: any, response: any, next: any) {
             const args = {
@@ -57,7 +57,7 @@ export function RegisterRoutes(app: express.Router) {
             }
         });
         // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-        app.post('/undefined',
+        app.post('/to-do',
 
             function ToDoController_addOne(request: any, response: any, next: any) {
             const args = {
@@ -80,12 +80,12 @@ export function RegisterRoutes(app: express.Router) {
             }
         });
         // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-        app.put('/undefined/:id',
+        app.put('/to-do/:id',
 
             function ToDoController_updateOne(request: any, response: any, next: any) {
             const args = {
                     id: {"in":"path","name":"id","required":true,"dataType":"string"},
-                    toDo: {"in":"body-prop","name":"toDo","required":true,"ref":"IToDo"},
+                    toDo: {"in":"body","name":"toDo","required":true,"ref":"IToDo"},
             };
 
             // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
@@ -104,7 +104,7 @@ export function RegisterRoutes(app: express.Router) {
             }
         });
         // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-        app.delete('/undefined/:id',
+        app.delete('/to-do/:id',
 
             function ToDoController_deleteOne(request: any, response: any, next: any) {
             const args = {

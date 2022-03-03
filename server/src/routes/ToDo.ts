@@ -1,9 +1,9 @@
+import { CustomRoute } from "../types/Route";
 import ENDPOINT from "@config/apis/endpoint";
-import Route from "./index";
 import { ToDoController } from "../controllers/ToDo";
 
-class ToDoRoute extends Route {
-    private toDoController = new ToDoController();
+class ToDoRoute extends CustomRoute {
+    private toDoController: ToDoController = new ToDoController();
 
     constructor() {
         super();
@@ -11,7 +11,7 @@ class ToDoRoute extends Route {
         this.setRoutes();
     }
 
-    protected setRoutes() {
+    protected setRoutes(): void {
         this.router.get("", this.toDoController.getAll)
             .post("", this.toDoController.addOne)
             // .put("/:id", this.toDoController.updateOne)

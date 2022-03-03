@@ -1,4 +1,4 @@
-FROM node:lts-slim
+FROM node:14.19-alpine3.15
 
 RUN mkdir -p /usr/src/app
 

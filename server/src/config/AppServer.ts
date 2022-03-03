@@ -14,8 +14,6 @@ import { Server } from "http";
 import swaggerUi from "swagger-ui-express";
 
 interface IServer {
-    configureMiddleware(): void;
-    setRoutes(): void;
     start(port: string | number): void;
 }
 
@@ -23,7 +21,7 @@ interface IServer {
 export class AppServer implements IServer {
     private readonly _app: Application;
     private _server!: Server;
-    private readonly SERVER_STARTED = "Server is running on port: ";
+    private readonly SERVER_STARTED: string = "Server is running on port: ";
 
     get app(): Application {
         return this._app;
@@ -35,11 +33,18 @@ export class AppServer implements IServer {
 
     constructor() {
         this._app = express();
+        this.connectDb();
         this.configureMiddleware();
         this.setRoutes();
     }
 
-    public configureMiddleware(): void {
+    protected connectDb(): void {
+        mongoose.connect(MONGODB_URL).catch((error: Error): void => {
+            console.error(`MongoDB connection error. Please make sure MongoDB is running. ${error}`);
+        });
+    }
+
+    protected configureMiddleware(): void {
         this._app.use(morgan("tiny"))
             .use(bodyParser.json())
             .use(bodyParser.urlencoded({ extended: true }))
@@ -49,23 +54,16 @@ export class AppServer implements IServer {
                     swaggerUi.generateHTML(await import("@spec/swagger.json"))
                 );
             });
-
-        mongoose.connect(MONGODB_URL).then(
-            () => { /** ready to use. The `mongoose.connect()` promise resolves to undefined. */ },
-        ).catch((error: Error) => {
-            console.error(`MongoDB connection error. Please make sure MongoDB is running. ${error}`);
-            // process.exit();
-        });
     }
 
-    public setRoutes(): void {
+    protected setRoutes(): void {
         for (const route of router) {
             this._app.use(API_PREFIX + route.getPrefix(), route.getRouter());
         }
 
-        this._app.use(express.static(path.join(__dirname, "build")))
+        this._app.use(express.static(path.join(__dirname, "../../../client/build")))
             .get("/", (_req: Request, res: Response): void => {
-                res.sendFile(path.join(__dirname, "build", "index.html"));
+                res.sendFile(path.join(__dirname, "../../../client/build", "index.html"));
             });
 
         // tsoa

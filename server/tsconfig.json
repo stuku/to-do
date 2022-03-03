@@ -1,16 +1,41 @@
 {
   "compilerOptions": {
+    /* Basic Options */
+    "incremental": true,
     "target": "es6",
     "module": "commonjs",
     "outDir": "dist",
     "rootDir": ".",
+
+    /* Strict Type-Checking Options */
     "strict": true,
+    "noImplicitAny": true,
+    "strictNullChecks": true,
+    "strictFunctionTypes": true,
+    "strictBindCallApply": true,
+    "strictPropertyInitialization": true,
+    "noImplicitThis": true,
+    "alwaysStrict": true,
+
+    /* Additional Checks */
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+
+    /* Module Resolution Options */
+    "moduleResolution": "node",
     "baseUrl": ".",
     "resolveJsonModule": true,
     "esModuleInterop": true,
-    "forceConsistentCasingInFileNames": true,
-    "moduleResolution": "node",
+
+    /* Experimental Options */
     "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+
+    /* Advanced Options */
+    "forceConsistentCasingInFileNames": true,
+
     "paths": {
       "@config/*": ["src/config/*"],
       "@controllers/*": ["src/controllers/*"],
@@ -21,9 +46,15 @@
       "@routes/*": ["src/routes/*"],
       "@services/*": ["src/services/*"],
       "@spec/*": ["spec/*"],
+      "@types/*": ["src/types/*"],
       "@util/*": ["src/util/*"]
     }
   },
   "include": ["src/**/*.ts", "src/config/swagger.js"],
-  "exclude": ["src/types/*.ts", "node_modules", ".vscode"]
+  "exclude": [
+    "src/types/*.ts",
+    "node_modules",
+    ".vscode",
+    "src/routes/routes.ts"
+  ]
 }

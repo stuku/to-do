@@ -1,4 +1,4 @@
-import { Body, BodyProp, Delete, Get, Post, Put, Route } from "tsoa";
+// import { Body, Delete, Get, Post, Put, Route } from "tsoa";
 import ToDoModel from "@models/ToDo";
 
 // local copies for tsoa
@@ -16,26 +16,28 @@ interface IToDo {
     status: EStatus;
 }
 
-@Route("/to-do")
+// @Route("/to-do")
 export class ToDoController {
-    @Get()
+    // @Get()
     public async getAll(): Promise<IToDo[]> {
         return await ToDoModel.find().limit(10);
     }
 
-    @Post()
-    public async addOne(@Body() toDo: IToDo): Promise<void> {
+    // @Post()
+    // public async addOne(@Body() toDo: IToDo): Promise<void> {
+    public async addOne(toDo: IToDo): Promise<void> {
         const item = new ToDoModel(toDo);
         await item.save();
     }
 
 
-    @Put("/{id}")
-    public async updateOne(id: string, @BodyProp() toDo: IToDo): Promise<void> {
+    // @Put("/{id}")
+    // public async updateOne(id: string, @Body() toDo: IToDo): Promise<void> {
+    public async updateOne(id: string, toDo: IToDo): Promise<void> {
         await ToDoModel.findOneAndUpdate({ _id: id }, toDo);
     }
 
-    @Delete("/{id}")
+    // @Delete("/{id}")
     public async deleteOne(id: string): Promise<void> {
         await ToDoModel.findByIdAndRemove(id);
     }

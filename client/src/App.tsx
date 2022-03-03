@@ -15,7 +15,7 @@ class App extends Component {
 
   // fetching the GET route from the Express server which matches the GET route from server.js
   callBackendAPI = async () => {
-    const response = await fetch('/express_backend');
+    const response = await fetch("/");
     const body = await response.json();
 
     if (response.status !== 200) {
@@ -30,6 +30,7 @@ class App extends Component {
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
           <p>
+            {this.state.data}
             Edit <code>src/App.tsx</code> and save to reload.
           </p>
           <a
