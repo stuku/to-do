@@ -1,22 +1,21 @@
 import { Document, model, Schema } from "mongoose";
-import { EStatus } from "@enums/to-do";
+import { EStatus } from "@enums/to-do.enum";
 
 export interface IToDo extends Document {
     _id: string;
-    name: string;
+    title: string;
     description?: string;
-    status: EStatus;
+    status: typeof EStatus;
 }
 
 const toDoSchema: Schema = new Schema(
     {
-        name: {
+        title: {
             type: String,
             required: true,
         },
         description: {
-            type: String,
-            required: true,
+            type: String
         },
         status: {
             type: typeof EStatus,

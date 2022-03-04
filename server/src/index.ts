@@ -1,4 +1,4 @@
-import AppServer from "@config/AppServer";
+import AppServer from "@config/app-server";
 
-const appServer = new AppServer();
+export const appServer: AppServer = new AppServer();
 appServer.start(process.env["PORT"] || 49170);

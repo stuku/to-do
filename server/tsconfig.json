@@ -1,13 +1,11 @@
 {
   "compilerOptions": {
-    /* Basic Options */
     "incremental": true,
     "target": "es6",
     "module": "commonjs",
     "outDir": "dist",
     "rootDir": ".",
 
-    /* Strict Type-Checking Options */
     "strict": true,
     "noImplicitAny": true,
     "strictNullChecks": true,
@@ -17,23 +15,19 @@
     "noImplicitThis": true,
     "alwaysStrict": true,
 
-    /* Additional Checks */
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
 
-    /* Module Resolution Options */
     "moduleResolution": "node",
     "baseUrl": ".",
     "resolveJsonModule": true,
     "esModuleInterop": true,
 
-    /* Experimental Options */
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
 
-    /* Advanced Options */
     "forceConsistentCasingInFileNames": true,
 
     "paths": {
@@ -47,10 +41,15 @@
       "@services/*": ["src/services/*"],
       "@spec/*": ["spec/*"],
       "@types/*": ["src/types/*"],
-      "@util/*": ["src/util/*"]
+      "@utils/*": ["src/utils/*"]
     }
   },
-  "include": ["src/**/*.ts", "src/config/swagger.js"],
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.tsx",
+    "tests/**/*.tsx",
+    "src/config/swagger.js"
+  ],
   "exclude": [
     "src/types/*.ts",
     "node_modules",
