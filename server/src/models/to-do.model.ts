@@ -1,14 +1,14 @@
-import { Document, model, Schema } from "mongoose";
+import { Document, Schema, model } from "mongoose";
 import { EStatus } from "@enums/to-do.enum";
 
 export interface IToDo extends Document {
     _id: string;
     title: string;
     description?: string;
-    status: typeof EStatus;
+    status: typeof EStatus[keyof typeof EStatus];
 }
 
-const toDoSchema: Schema = new Schema(
+const toDoSchema: Schema<IToDo> = new Schema<IToDo>(
     {
         title: {
             type: String,
@@ -18,11 +18,12 @@ const toDoSchema: Schema = new Schema(
             type: String
         },
         status: {
-            type: typeof EStatus,
+            type: Number,
+            enum: Object.keys(EStatus),
             default: EStatus.TO_DO
         },
     },
     { timestamps: true }
-)
+);
 
 export default model<IToDo>("ToDo", toDoSchema);

@@ -1,5 +1,7 @@
-import { IResponse } from "@models/common.model"
-import { StatusCodes } from "http-status-codes"
+import { IResponse } from "@type/requests";
+import { Observer } from "rxjs";
+import { Response } from "express";
+import { StatusCodes } from "http-status-codes";
 
 export function generateResponse(
     code: typeof StatusCodes[keyof typeof StatusCodes],
@@ -19,10 +21,18 @@ export function generateResponse(
         default:
             break;
     }
-    
+
     return {
         code,
         message,
         data
     } as IResponse;
+}
+
+export function getObserver(res: Response): Observer<any> {
+    return {
+        next: (result: any) => res.status(StatusCodes.OK).json(generateResponse(StatusCodes.OK, "", result)),
+        error: (error: Error) => res.status(StatusCodes.BAD_REQUEST).json(generateResponse(StatusCodes.BAD_REQUEST, JSON.stringify(error), null)),
+        complete: () => { }
+    };
 }

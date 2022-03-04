@@ -40,7 +40,7 @@
       "@routes/*": ["src/routes/*"],
       "@services/*": ["src/services/*"],
       "@spec/*": ["spec/*"],
-      "@types/*": ["src/types/*"],
+      "@type/*": ["src/types/*"],
       "@utils/*": ["src/utils/*"]
     }
   },

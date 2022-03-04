@@ -9,7 +9,7 @@ module.exports = {
   coverageDirectory: 'coverage',
   testRegex: '(/__tests__/.*|(\\.|/)(test|spec))\\.tsx?$',
   collectCoverageFrom: [
-    "src/controllers/**/*.ts",
+    "src/services/**/*.ts",
     "src/utils/**/*.ts",
     "!**/__mocks__/**",
     "!**/__tests__/**"
