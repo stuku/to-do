@@ -40,20 +40,9 @@
       "@routes/*": ["src/routes/*"],
       "@services/*": ["src/services/*"],
       "@spec/*": ["spec/*"],
-      "@type/*": ["src/types/*"],
       "@utils/*": ["src/utils/*"]
     }
   },
-  "include": [
-    "src/**/*.ts",
-    "src/**/*.tsx",
-    "tests/**/*.tsx",
-    "src/config/swagger.js"
-  ],
-  "exclude": [
-    "src/types/*.ts",
-    "node_modules",
-    ".vscode",
-    "src/routes/routes.ts"
-  ]
+  "include": ["src/**/*.ts", "src/**/*.tsx", "tests/**/*.tsx"],
+  "exclude": ["node_modules", ".vscode", "src/routes/routes.ts"]
 }

@@ -50,13 +50,18 @@ export class AppServer implements IServer {
             .use(bodyParser.json())
             .use(bodyParser.urlencoded({ extended: true }))
             .use(cors())
-            .use(ROUTE_PATH.API_DOC, swaggerUi.serve,swaggerUi.setup(import("@spec/swagger.json")));
+            .use(ROUTE_PATH.API_DOC, swaggerUi.serve, swaggerUi.setup(import("@spec/swagger.json")));
+        // async (_req: Request, res: Response): Promise<Response> => {
+        // return res.send(
+        //     swaggerUi.generateHTML(await import("@spec/swagger.json"))
+        // );
+        // }
     }
 
     protected setRoutes(): void {
-        for (const route of router) {
+        router.forEach((route) => {
             this._app.use(API_PREFIX + route.getPrefix(), route.getRouter());
-        }
+        });
 
         this._app.use(express.static(path.join(__dirname, "../../../client/build")))
             .get("/", (_req: Request, res: Response): void => {

@@ -1,0 +1,1 @@
+export const TO_DO: string = '/to-do';

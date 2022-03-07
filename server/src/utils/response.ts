@@ -1,4 +1,6 @@
-import { IResponse } from "@type/requests";
+import { formatPagination } from "./common";
+import { IGetToDosResponse, IResponse } from "./type";
+import { IToDo } from "@models/to-do.model";
 import { Observer } from "rxjs";
 import { Response } from "express";
 import { StatusCodes } from "http-status-codes";
@@ -34,5 +36,13 @@ export function getObserver(res: Response): Observer<any> {
         next: (result: any) => res.status(StatusCodes.OK).json(generateResponse(StatusCodes.OK, "", result)),
         error: (error: Error) => res.status(StatusCodes.BAD_REQUEST).json(generateResponse(StatusCodes.BAD_REQUEST, JSON.stringify(error), null)),
         complete: () => { }
+    };
+}
+
+export function formatGetToDosResponse(result: IToDo[], pageSize: number, page: number): IGetToDosResponse {
+    const totalCount: number = result.length;
+    return {
+        list: result || [],
+        pagination: formatPagination(totalCount, pageSize, page)
     };
 }

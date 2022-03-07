@@ -1,46 +1,39 @@
-import { countPage } from "@utils/common";
 import { debounceTime } from "rxjs/operators";
 import { formatQuery } from "@utils/requests";
-import { IPagination } from "@type/common";
-import { InvalidParamsError, NotFoundError, UnknownError } from "@type/errors";
-import { IToDoQuery, ToDoParams } from "@type/requests";
+import { formatGetToDosResponse } from "@utils/response";
+import { IGetToDosResponse, IToDoQuery, ToDoParams } from "@utils/type";
+import { InvalidParamsError, NotFoundError, UnknownError } from "@utils/errors";
 import { Observable, switchMap, catchError, from, of } from "rxjs";
 import ToDoModel, { IToDo } from "@models/to-do.model";
 
 interface IToDoService {
-    getAll(query?: IToDoQuery): Observable<IPagination>;
+    getAll(query?: IToDoQuery): Observable<IGetToDosResponse>;
     addOne(toDo: ToDoParams): Promise<Observable<IToDo>>;
     updateOne(id: string, toDo: ToDoParams): Promise<Observable<IToDo>>;
     deleteOne(id: string): Promise<Observable<IToDo>>;
 }
 
 export class ToDoService implements IToDoService {
-    public getAll(query?: IToDoQuery): Observable<IPagination> {
-        const { limit: pageSize = 10, page = 1 } = query || {};
+    public getAll(query?: IToDoQuery): Observable<IGetToDosResponse> {
+        const { __l: pageSize = 10, __p: page = 0 } = query || {};
+
         const toDos$: Observable<IToDo[]> = from(
-            ToDoModel.aggregate()
-                .match(formatQuery(query?.filterBy))
-                .skip((pageSize * page) - pageSize)
+            ToDoModel.find(formatQuery(query))
+                .skip(pageSize * (page + 1) - pageSize)
                 .limit(pageSize)
+                .exec()
         );
 
         return toDos$.pipe(
             debounceTime(500),
-            switchMap((result) => {
+            switchMap((result: IToDo[]) => {
                 if (!result) {
-                    throw new NotFoundError();
+                    throw new UnknownError(result);
                 }
-                const totalCount: number = result.length;
-                return of({
-                    totalCount,
-                    pageCount: countPage(totalCount, pageSize),
-                    pageSize,
-                    page,
-                    data: result
-                } as IPagination);
+                return of(formatGetToDosResponse(result, pageSize, page));
             }),
-            catchError(() => {
-                throw new InvalidParamsError(query);
+            catchError((error: Error) => {
+                throw new InvalidParamsError(error);
             })
         );
     }
@@ -51,6 +44,12 @@ export class ToDoService implements IToDoService {
         }
 
         return of(await ToDoModel.create(toDo)).pipe(
+            switchMap((result: IToDo) => {
+                if (!result) {
+                    throw new UnknownError(result);
+                }
+                return of(result as IToDo);
+            }),
             catchError((error: Error) => {
                 throw new UnknownError(error);
             })

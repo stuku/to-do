@@ -1,3 +1,1 @@
-export default {
-    TO_DO: "/to-do"
-};
+export const TO_DO: string = "/to-do";

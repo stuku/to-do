@@ -20,7 +20,7 @@ export class ToDoController implements IToDoController {
      */
     // @Get()
     public getAll(_req: Request, res: Response): void {
-        _toDoService.getAll(_req?.params).subscribe(getObserver(res));
+        _toDoService.getAll(_req?.query).subscribe(getObserver(res));
     }
 
     /** 
@@ -38,7 +38,7 @@ export class ToDoController implements IToDoController {
      */
     // @Put("/{id}")
     public async updateOne(_req: Request, res: Response): Promise<void> {
-        (await _toDoService.updateOne(_req?.params?.id, _req?.body)).subscribe(getObserver(res));
+        (await _toDoService.updateOne(_req?.body?._id, _req?.body)).subscribe(getObserver(res));
     }
 
     /** 
