@@ -20,6 +20,5 @@ export const statusOptions: Status[] = [
 export const flexRowCss: React.CSSProperties = {
     display: 'flex',
     flexFlow: 'row nowrap',
-    justifyContent: 'space-between',
-    flex: 1,
+    placeContent: 'center space-between',
 };

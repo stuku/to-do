@@ -1,12 +1,12 @@
 import { formatPagination } from "./common";
-import { IGetToDosResponse, IResponse } from "./type";
+import { IGetToDosResponse, IResponse, TStatusCode } from "./type";
 import { IToDo } from "@models/to-do.model";
 import { Observer } from "rxjs";
 import { Response } from "express";
 import { StatusCodes } from "http-status-codes";
 
 export function generateResponse(
-    code: typeof StatusCodes[keyof typeof StatusCodes],
+    code: TStatusCode,
     message: string,
     data: any
 ): IResponse {
@@ -39,10 +39,9 @@ export function getObserver(res: Response): Observer<any> {
     };
 }
 
-export function formatGetToDosResponse(result: IToDo[], pageSize: number, page: number): IGetToDosResponse {
-    const totalCount: number = result.length;
+export function formatGetToDosResponse([list = [], totalCount = 0]: [IToDo[], number], pageSize: number, page: number): IGetToDosResponse {
     return {
-        list: result || [],
+        list: list || [],
         pagination: formatPagination(totalCount, pageSize, page)
     };
 }

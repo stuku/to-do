@@ -2,17 +2,19 @@ import { EStatus } from '../enums/to-do.enum';
 import { IPagination, Status } from './type';
 import { OperateResponse } from '../store/actions/type';
 
-export function forceParseInt(numLike: string | number): number {
+export function forceParseInt(numeric: string | number): number {
     try {
-        return typeof numLike === 'string' ? parseInt(numLike) : numLike;
+        return typeof numeric === 'string' ? parseInt(numeric) : numeric;
     } catch (e) {
         console.error('parse error');
     }
-    return -1;
+    return NaN;
 }
 
 export function countPage(totalCount: number, pageSize: number): number {
-    return Math.ceil(forceParseInt(totalCount) / forceParseInt(pageSize));
+    pageSize = forceParseInt(pageSize);
+    if (pageSize === 0) return 0;
+    return Math.ceil(forceParseInt(totalCount) / pageSize);
 }
 
 export function formatPagination(totalCount: number = 0, pageSize: number = 10, page: number = 0): IPagination {

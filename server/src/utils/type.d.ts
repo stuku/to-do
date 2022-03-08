@@ -2,6 +2,8 @@ import { IToDo } from "@models/to-do.model";
 import { Response } from "express";
 import { StatusCodes } from "http-status-codes";
 
+export type TStatusCode = typeof StatusCodes[keyof typeof StatusCodes];
+
 export interface IQuery {
     __l?: number;
     __p?: number;
@@ -12,7 +14,7 @@ export type ToDoParams = Partial<Pick<IToDo, "title" | "description" | "status">
 export interface IToDoQuery extends IQuery, ToDoParams { }
 
 export interface IResponse extends Response {
-    code: typeof StatusCodes[keyof typeof StatusCodes];
+    code: TStatusCode;
     message: string;
     data?: any;
 }

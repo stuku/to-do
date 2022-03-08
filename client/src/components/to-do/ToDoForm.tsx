@@ -20,7 +20,7 @@ export default function ToDoForm(props: ToDoFormProps): JSX.Element {
   const [title, setTitle] = useState<string>('');
   const [description, setDescription] = useState<string>('');
   const [status, setStatus] = useState<Status>(EStatus.TO_DO);
-  
+
   const handleEditTitle = (text: string): void => setTitle(text);
   const handleEditDescription = (text: string): void => setDescription(text);
   const handleUpdateStatus = (event: SelectChangeEvent): void =>
@@ -53,9 +53,11 @@ export default function ToDoForm(props: ToDoFormProps): JSX.Element {
           ))}
         </Select>
       </FormControl>
-      <IconButton color="success" onClick={handleAdd}>
-        <AddIcon />
-      </IconButton>
+      <Box style={flexRowCss}>
+        <IconButton color="success" onClick={handleAdd}>
+          <AddIcon />
+        </IconButton>
+      </Box>
     </Box>
   );
 }

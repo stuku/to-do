@@ -2,13 +2,13 @@ import * as ENDPOINT from "@config/apis/endpoint";
 import { errorHandler } from "@utils/errors";
 import { Router } from "express";
 import { ToDoController } from "@controllers/to-do.controller";
-import { toDoModelValidation } from "@utils/validation";
+import { toDoModelValidation } from "src/constants/validation";
 
 export abstract class CustomRoute {
     protected router = Router();
     protected prefix: string = "/";
     protected abstract setRoutes(): void;
-    
+
     public getRouter() {
         return this.router;
     }

@@ -18,7 +18,6 @@
     "jsx": "react-jsx",
 
     "paths": {
-      "@constants/*": ["src/constants/*"],
       "@enums/*": ["src/enums/*"],
       "@services/*": ["src/services/*"],
       "@store/*": ["src/store/*"],

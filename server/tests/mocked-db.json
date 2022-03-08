@@ -1,0 +1,84 @@
+{
+    "toDos": [
+        {
+            "_id": "6221efe3f158a1fac79da385",
+            "title": "1st item",
+            "description": "happy",
+            "status": 0
+        },
+        {
+            "_id": "6225d6d8c6eba0a4a16da609",
+            "title": "2nd item",
+            "description": "different from 1st item",
+            "status": 1
+        },
+        {
+            "_id": "6225db18c6eba0a4a16da63d",
+            "title": "3rd item",
+            "description": "changed next",
+            "status": 0
+        },
+        {
+            "_id": "62260a148e0f6e8aeaeda1c7",
+            "title": "4th item",
+            "description": "description",
+            "status": 99
+        },
+        {
+            "_id": "62260a1b8e0f6e8aeaeda1c9",
+            "title": "5th item",
+            "description": "fff",
+            "status": 2
+        },
+        {
+            "_id": "62260a1e8e0f6e8aeaeda1cb",
+            "title": "6th item",
+            "description": "asdf",
+            "status": 0
+        },
+        {
+            "_id": "62260a218e0f6e8aeaeda1cd",
+            "title": "7th item",
+            "description": "this is a test description",
+            "status": 1
+        },
+        {
+            "_id": "62261a7340c067d3b9af3eb0",
+            "title": "8th item",
+            "description": "1234",
+            "status": 2
+        }
+    ],
+    "users": [
+        {
+            "id": 1,
+            "name": "Sean Maxwell",
+            "email": "sean.maxwell@gmail.com",
+            "role": 1
+        },
+        {
+            "id": 2,
+            "name": "Gordon Freeman",
+            "email": "gordon.freeman@hotmail.com",
+            "role": 2
+        },
+        {
+            "id": 3,
+            "name": "John Smith",
+            "email": "jsmith@yahoo.com",
+            "role": 1
+        },
+        {
+            "id": 4,
+            "name": "John Doe",
+            "email": "john.doe@icloud.com",
+            "role": 3
+        },
+        {
+            "id": 5,
+            "name": "Jane Doe",
+            "email": "jane.doe@gmail.com",
+            "role": 3
+        }
+    ]
+}

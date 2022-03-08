@@ -4,7 +4,7 @@ import { Request, Response } from "express";
 import { ToDoService } from "@services/to-do.service";
 
 interface IToDoController {
-    getAll(_req: Request, res: Response): void;
+    getAll(_req: Request, res: Response): Promise<void>;
     addOne(_req: Request, res: Response): Promise<void>;
     updateOne(_req: Request, res: Response): Promise<void>;
     deleteOne(_req: Request, res: Response): Promise<void>;
@@ -19,8 +19,8 @@ export class ToDoController implements IToDoController {
      * @param query
      */
     // @Get()
-    public getAll(_req: Request, res: Response): void {
-        _toDoService.getAll(_req?.query).subscribe(getObserver(res));
+    public async getAll(_req: Request, res: Response): Promise<void> {
+        (await _toDoService.getAll(_req?.query)).subscribe(getObserver(res));
     }
 
     /** 

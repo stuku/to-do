@@ -7,7 +7,6 @@ import { Epic, ofType, StateObservable } from 'redux-observable';
 import { formatToDoQuery } from '../../utils/requests';
 import { from, of } from 'rxjs';
 import { IGetToDosResponse } from '../../utils/type';
-import { IToDoState } from '@store/reducers/type';
 import { Observable } from 'rxjs'
 import { operate } from '../actions/common.action';
 import { RootState } from '@store/type';

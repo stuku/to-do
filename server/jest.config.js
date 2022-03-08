@@ -17,4 +17,6 @@ module.exports = {
   moduleNameMapper: pathsToModuleNameMapper(compilerOptions.paths, {
     prefix: '<rootDir>/',
   }),
+  testTimeout: 10000,
+  coverageProvider: "babel"
 };
