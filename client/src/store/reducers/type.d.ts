@@ -10,7 +10,7 @@ export interface IToDoFilterBy {
 
 export interface ISortBy {
     property: string;
-    orderBy: ESort.ASC | ESort.DSC;
+    value: ESort.ASC | ESort.DSC;
 }
 
 export interface ICommonState {
