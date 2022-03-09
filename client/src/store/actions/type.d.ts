@@ -13,4 +13,5 @@ export type UpdateToDoSuccessFullyAction = ReturnType<typeof updateToDoSuccessFu
 export type DeleteToDoAction = ReturnType<typeof deleteToDo>;
 export type ChangePageNumberAction = ReturnType<typeof changePageNumber>;
 export type ChangePageSizeAction = ReturnType<typeof changePageSize>;
-export type ToDoActions = GetToDosAction | AddToDoAction | UpdateToDoAction | DeleteToDoAction | AddToDoSuccessFullyAction | UpdateToDoSuccessFullyAction| ChangePageNumberAction| ChangePageSizeAction;
+export type SetFilterByAction = ReturnType<typeof setFilterBy>;
+export type ToDoActions = GetToDosAction | AddToDoAction | UpdateToDoAction | DeleteToDoAction | AddToDoSuccessFullyAction | UpdateToDoSuccessFullyAction | ChangePageNumberAction | ChangePageSizeAction | SetFilterByAction;

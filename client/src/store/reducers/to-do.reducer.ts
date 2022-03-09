@@ -1,5 +1,6 @@
-import { ADD_TODO_SUCCESSFULLY, CHANGE_PAGE_NUMBER, CHANGE_PAGE_SIZE, SET_TO_DOS, UPDATE_TODO_SUCCESSFULLY } from '../actions/to-do.action';
+import { ADD_TODO_SUCCESSFULLY, CHANGE_PAGE_NUMBER, CHANGE_PAGE_SIZE, SET_FILTER_BY, SET_TO_DOS, UPDATE_TODO_SUCCESSFULLY } from '../actions/to-do.action';
 import { createReducer } from '@reduxjs/toolkit';
+import { formatPagination } from '../../utils/common';
 import { initialToDoState } from '../../constants/state';
 import { IToDo } from '../../utils/type';
 
@@ -18,13 +19,22 @@ const toDoReducer = createReducer(initialToDoState, {
     [UPDATE_TODO_SUCCESSFULLY]: (state, action) => {
         const idx: number = state.list.findIndex((existingToDo: IToDo) => existingToDo._id === action?.payload?.response?.data?._id);
         state.list[idx] = action?.payload?.response?.data;
+        state.renderKeyId += 1;
     },
     [CHANGE_PAGE_NUMBER]: (state, action) => {
         state.pagination.page = action?.payload;
+        state.list = [];
     },
     [CHANGE_PAGE_SIZE]: (state, action) => {
         state.pagination.page = 0;
         state.pagination.pageSize = action?.payload;
+        state.list = [];
+    },
+    [SET_FILTER_BY]: (state, action) => {
+        state.filterBy = action?.payload;
+        state.pagination.page = 0;
+        state.list = [];
+        state.renderKeyId += 1;
     },
 });
 

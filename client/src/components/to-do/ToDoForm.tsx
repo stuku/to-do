@@ -9,6 +9,7 @@ import MenuItem from '@mui/material/MenuItem';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 import { Status, ToDoParams } from '@utils/type';
 import ToDoContentInput from './ToDoContentInput';
+import Tooltip from '@mui/material/Tooltip';
 import { useState } from 'react';
 import { validateToDoParams } from '../../utils/validation';
 
@@ -31,14 +32,14 @@ export default function ToDoForm(props: ToDoFormProps): JSX.Element {
   };
 
   return (
-    <Box sx={{ width: '100%' }} style={flexRowCss}>
+    <Box sx={{ p: 2, pt: 0 }} style={flexRowCss}>
       <ToDoContentInput
         title={title}
         description={description}
         onUpdateTitle={handleEditTitle}
         onUpdateDescription={handleEditDescription}
       />
-      <FormControl variant="standard" sx={{ m: 1, minWidth: 120 }}>
+      <FormControl variant="standard" sx={{ m: 1, ml: 2, minWidth: 120 }}>
         <InputLabel id="status-label">Status</InputLabel>
         <Select
           label="Status"
@@ -54,9 +55,11 @@ export default function ToDoForm(props: ToDoFormProps): JSX.Element {
         </Select>
       </FormControl>
       <Box style={flexRowCss}>
-        <IconButton color="success" onClick={handleAdd}>
-          <AddIcon />
-        </IconButton>
+        <Tooltip title="Add">
+          <IconButton color="success" onClick={handleAdd}>
+            <AddIcon />
+          </IconButton>
+        </Tooltip>
       </Box>
     </Box>
   );

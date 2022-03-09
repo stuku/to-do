@@ -6,6 +6,7 @@ import TableContainer from '@mui/material/TableContainer';
 import ToDoCard from './row/ToDoCard';
 import { ToDoListProps } from 'src/components/views/ToDoList';
 import ToDoTableHead from './ToDoTableHead';
+import ToDoTableToolbar from './ToDoTableToolbar';
 import ToDoTablePagination from './ToDoTablePagination';
 import { TOrder } from './ToDoTableHead';
 import { useEffect, useState } from 'react';
@@ -13,15 +14,17 @@ import { useEffect, useState } from 'react';
 export interface IToDoTableCell {
   label: string;
   orderId: string;
+  align?: 'left' | 'right';
   style?: React.CSSProperties;
 }
 
 interface ToDoTableProps extends ToDoListProps {}
 
 export default function ToDoTable(props: ToDoTableProps): JSX.Element {
-  const { list, pagination } = props;
+  const { list, pagination, renderKeyId } = props;
   const [order, setOrder] = useState<TOrder>('asc');
   const [orderBy, setOrderBy] = useState<string>('title');
+
   const handleRequestSort = (
     event: React.MouseEvent<unknown>,
     property: string
@@ -38,13 +41,20 @@ export default function ToDoTable(props: ToDoTableProps): JSX.Element {
   };
 
   useEffect(() => {
+    props.setOverlay(true);
     props.getAll();
-  }, [pagination.pageSize, pagination.page]);
+  }, [pagination.pageSize, pagination.page, renderKeyId]);
 
   return (
-    <Box sx={{ width: '100%' }}>
+    <Box>
       <TableContainer>
-        <Table sx={{ minWidth: 750 }} aria-labelledby="tableTitle">
+        <ToDoTableToolbar
+          isDisabled={list.length === 0}
+          filterBy={props.filterBy}
+          numSelected={0}
+          onFilterBy={props.setFilterBy}
+        />
+        <Table>
           <ToDoTableHead
             order={order}
             orderBy={orderBy}

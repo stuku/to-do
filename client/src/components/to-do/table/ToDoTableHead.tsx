@@ -18,6 +18,7 @@ interface ToDoTableProps {
 
 export default function ToDoTableHead(props: ToDoTableProps): JSX.Element {
   const { order, orderBy } = props;
+  
   const handleSort =
     (property: string) =>
     (event: React.MouseEvent<unknown>): void => {
@@ -31,6 +32,7 @@ export default function ToDoTableHead(props: ToDoTableProps): JSX.Element {
         {toDoTableHeadCellProps.map((headCell: IToDoTableCell) => (
           <TableCell
             key={headCell.orderId}
+            align={headCell.align}
             sortDirection={orderBy === headCell.orderId ? order : false}
             style={headCell.style}
           >

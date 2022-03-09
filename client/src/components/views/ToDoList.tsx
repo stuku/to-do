@@ -4,12 +4,14 @@ import {
   changePageSize,
   deleteToDo,
   getToDos,
+  setFilterBy,
   updateToDo,
 } from '../../store/actions/to-do.action';
 import { connect } from 'react-redux';
 import Container from '@mui/material/Container';
 import { IToDoState } from '@store/reducers/type';
 import { RootState } from '@store/type';
+import { setOverlay } from '../../store/actions/common.action';
 import ToDoForm from '../to-do/ToDoForm';
 import ToDoTable from '../to-do/table/ToDoTable';
 
@@ -22,6 +24,8 @@ const dispatchProps = {
   deleteOne: deleteToDo,
   changePageNumber,
   changePageSize,
+  setFilterBy,
+  setOverlay,
 };
 
 export type ToDoListProps = ReturnType<typeof mapStateToProps> &

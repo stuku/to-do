@@ -1,25 +1,26 @@
 import { addToDo, deleteToDo, getToDos, updateToDoSuccessFully, setToDos, updateToDo, addToDoSuccessFully } from '../actions/to-do.action';
 import { AddToDoAction, DeleteToDoAction, GetToDosAction, UpdateToDoAction } from '../actions/type';
 import api from '../../services/apis';
-import { catchError, mergeMap, switchMap } from 'rxjs/operators';
+import { catchError, debounceTime, mergeMap, switchMap } from 'rxjs/operators';
 import { EOperation } from '../../enums/common.enum';
 import { Epic, ofType, StateObservable } from 'redux-observable';
 import { formatToDoQuery } from '../../utils/requests';
 import { from, of } from 'rxjs';
 import { IGetToDosResponse } from '../../utils/type';
 import { Observable } from 'rxjs'
-import { operate } from '../actions/common.action';
+import { operate, setOverlay } from '../actions/common.action';
 import { RootState } from '@store/type';
 
 export const getListEpic: Epic = (action$: Observable<GetToDosAction>, state$: StateObservable<RootState>) =>
     action$.pipe(
         ofType(getToDos.type),
+        debounceTime(2000),
         switchMap((action: GetToDosAction) => {
             const { filterBy, pagination } = state$.value.toDo;
             return from(api.toDo.getAll(
                 formatToDoQuery(filterBy, pagination))
             ).pipe(
-                mergeMap((result: IGetToDosResponse) => [setToDos(result), operate([action.type, EOperation.READ, result])]),
+                mergeMap((result: IGetToDosResponse) => [setToDos(result), setOverlay(false)]),
                 catchError((error: Error) => of(operate([action.type, EOperation.READ, error])))
             );
         })

@@ -1,10 +1,10 @@
-import { EStatus } from "../enums/to-do.enum";
-import { IToDoTableCell } from "src/components/to-do/table/ToDoTable";
-import { Status } from "../utils/type";
+import { EStatus } from '../enums/to-do.enum';
+import { IToDoTableCell } from 'src/components/to-do/table/ToDoTable';
+import { Status } from '../utils/type';
 
 export const toDoTableHeadCellProps: IToDoTableCell[] = [
     { orderId: 'title', label: 'Title' },
-    { orderId: 'status', label: 'Status', style: { flex: '0 0 100px' } },
+    { orderId: 'status', label: 'Status', align: 'right', style: { flex: '0 0 200px' } },
     { orderId: '', label: '', style: { flex: '0 0 100px' } }
 ];
 
@@ -18,3 +18,5 @@ export const flexRowCss: React.CSSProperties = {
     justifyContent: ' space-between',
     alignItems: 'center',
 };
+
+export const filterByValues: string[] = ['', 'title', 'description'];

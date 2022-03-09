@@ -1,7 +1,7 @@
 import { forceParseInt } from "./common";
 import { IQuery } from "./type";
 
-export const keysOfIQuery: string[] = ['__l', '__p'];
+export const keysOfIQuery: string[] = ["__l", "__p"];
 export const numberParams: string[] = ["status"];
 
 export function formatQuery(params: IQuery | undefined): any {
@@ -9,14 +9,14 @@ export function formatQuery(params: IQuery | undefined): any {
 
     const query: any = {};
     Object.entries(params).forEach(([key, value]) => {
-        if (keysOfIQuery.indexOf(key) > -1 || (typeof value !== 'string' && typeof value !== 'number')) return;
+        if (keysOfIQuery.indexOf(key) > -1 || (typeof value !== "string" && typeof value !== "number")) return;
 
         if (numberParams.indexOf(key) > -1) {
             query[key] = {
                 $eq: forceParseInt(value)
             };
         } else {
-            query[key] = { $regex: new RegExp("^" + value) };
+            query[key] = { $regex: new RegExp("^" + value, "i") };
         }
     });
     return query;

@@ -8,6 +8,7 @@ export const initialCommonState: ICommonState = {
 };
 
 export const initialToDoState: IToDoState = {
+    renderKeyId: (new Date()).getTime(),
     filterBy: {},
     list: [],
     pagination: formatPagination()

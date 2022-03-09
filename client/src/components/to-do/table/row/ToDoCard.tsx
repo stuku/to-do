@@ -11,6 +11,7 @@ import SaveIcon from '@mui/icons-material/SaveOutlined';
 import TableCell from '@mui/material/TableCell';
 import TableRow from '@mui/material/TableRow';
 import ToDoContentInput from '../../ToDoContentInput';
+import Tooltip from '@mui/material/Tooltip';
 import { useState } from 'react';
 
 interface ToDoCardProps {
@@ -24,6 +25,7 @@ export default function ToDoCard(props: ToDoCardProps): JSX.Element {
   const [isEditing, setIsEditing] = useState<boolean>(false);
   const [newTitle, setNewTitle] = useState<string>(title);
   const [newDescription, setNewDescription] = useState<string>(description);
+  
   const handleEditTitle = (text: string): void => setNewTitle(text);
   const handleEditDescription = (text: string): void => setNewDescription(text);
   const handleSave = () => {
@@ -47,7 +49,14 @@ export default function ToDoCard(props: ToDoCardProps): JSX.Element {
   };
 
   return (
-    <TableRow hover sx={{ '& > *': { borderBottom: 'unset' } }}>
+    <TableRow
+      hover
+      sx={{
+        pl: { sm: 2 },
+        pr: { xs: 1, sm: 1 },
+        '& > *': { borderBottom: 'unset' },
+      }}
+    >
       <TableCell component="th" scope="row" style={flexRowCss}>
         {!isEditing ? (
           <Box style={{ flex: 1 }}>
@@ -65,18 +74,22 @@ export default function ToDoCard(props: ToDoCardProps): JSX.Element {
           />
         )}
       </TableCell>
-      <TableCell style={{ flex: '0 0 100px' }}>
+      <TableCell align="right" style={{ flex: '0 0 200px' }}>
         <Button color={mapBadgeColor(status)} variant="outlined">
           {EStatusLabel[status]}
         </Button>
       </TableCell>
-      <TableCell align="right" style={{ flex: '0 0 100px' }}>
-        <IconButton color="info" onClick={handleClickEditIcon}>
-          {!isEditing ? <EditIcon /> : <SaveIcon />}
-        </IconButton>
-        <IconButton color="error" onClick={handleDelete}>
-          <DeleteIcon />
-        </IconButton>
+      <TableCell align="right" sx={{ pr: 1 }} style={{ flex: '0 0 80px' }}>
+        <Tooltip title={!isEditing ? 'Edit' : 'Save'}>
+          <IconButton color="info" onClick={handleClickEditIcon}>
+            {!isEditing ? <EditIcon /> : <SaveIcon />}
+          </IconButton>
+        </Tooltip>
+        <Tooltip title="Delete">
+          <IconButton color="error" onClick={handleDelete}>
+            <DeleteIcon />
+          </IconButton>
+        </Tooltip>
       </TableCell>
     </TableRow>
   );

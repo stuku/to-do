@@ -13,6 +13,7 @@ export default function ToDoTablePagination(
   props: ToDoTablePaginationProps
 ): JSX.Element {
   const { page, pageSize, totalCount } = props;
+  
   const handleChangePage = (
     event: React.MouseEvent<HTMLButtonElement, MouseEvent> | null,
     newPage: number

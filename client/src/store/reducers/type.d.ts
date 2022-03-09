@@ -8,11 +8,12 @@ export interface IToDoFilterBy {
 }
 
 export interface ICommonState {
-    overlay: Boolean;
-    toastMessage: String;
+    overlay: boolean;
+    toastMessage: string;
 }
 
 export interface IToDoState {
+    renderKeyId: number;
     filterBy: IToDoFilterBy;
     list: IToDo[];
     pagination: IPagination;
