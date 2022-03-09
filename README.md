@@ -11,6 +11,30 @@ A To-Do List with features like create, edit, filter, prioritize, etc.
 - Prepare presentation to demo your project
 - Apply functional programming (TypeScript: FP-PS Either, Pipe…)
 
+## Tech
+Typescript + Express + Mongoose + React + Redux + Redux-Observable + RxJS + Jest + swagger
+
+## How to Start
+
+### cd ./client
+```
+npm run start
+```
+It will run on port 3000 by default.
+
+### cd ./sever
+```
+npm run dev
+```
+It will run on port 49170 by default.
+
+The swagger UI would be accessible at: [http://localhost:49170/api-doc/](http://localhost:49170/api-doc/)
+
+Service and utils would be tested by:
+```
+npm run test
+```
+
 ## Roadmap
 
 ### Phase 1
@@ -27,7 +51,7 @@ A To-Do List with features like create, edit, filter, prioritize, etc.
     - Unit Tests
 - Client-side Implementation:
     - Page Design and components: Material UI
-    - Redux (N2H)
+    - Redux
 - Integration Test
 
 ### Phase 2 (N2H)
