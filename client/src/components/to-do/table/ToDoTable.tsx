@@ -19,7 +19,7 @@ export interface IToDoTableCell {
 interface ToDoTableProps extends ToDoListProps {}
 
 export default function ToDoTable(props: ToDoTableProps): JSX.Element {
-  const { list, pagination, getAll } = props;
+  const { list, pagination } = props;
   const [order, setOrder] = useState<TOrder>('asc');
   const [orderBy, setOrderBy] = useState<string>('title');
   const handleRequestSort = (
@@ -38,7 +38,7 @@ export default function ToDoTable(props: ToDoTableProps): JSX.Element {
   };
 
   useEffect(() => {
-    getAll();
+    props.getAll();
   }, [pagination.pageSize, pagination.page]);
 
   return (

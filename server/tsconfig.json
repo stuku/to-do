@@ -39,7 +39,6 @@
       "@repos/*": ["src/repos/*"],
       "@routes/*": ["src/routes/*"],
       "@services/*": ["src/services/*"],
-      "@spec/*": ["spec/*"],
       "@utils/*": ["src/utils/*"]
     }
   },

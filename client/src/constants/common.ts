@@ -10,15 +10,11 @@ export const toDoTableHeadCellProps: IToDoTableCell[] = [
 
 export const paginationOptions: number[] = [5, 10, 25];
 
-export const statusOptions: Status[] = [
-    { label: 'To-Do', value: EStatus.TO_DO },
-    { label: 'Doing', value: EStatus.DOING },
-    { label: 'Done', value: EStatus.DONE },
-    { label: 'Pending', value: EStatus.PENDING }
-];
+export const statusValues: Status[] = [EStatus.TO_DO, EStatus.DOING, EStatus.DONE, EStatus.PENDING];
 
 export const flexRowCss: React.CSSProperties = {
     display: 'flex',
     flexFlow: 'row nowrap',
-    placeContent: 'center space-between',
+    justifyContent: ' space-between',
+    alignItems: 'center',
 };

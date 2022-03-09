@@ -30,6 +30,9 @@
   "proxy": {
     "/api": {
       "target": "http://localhost:49170"
+    },
+    "/api-doc": {
+      "target": "http://localhost:49170"
     }
   }
 }

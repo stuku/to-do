@@ -9,7 +9,7 @@ export function formatQuery(params: IQuery | undefined): any {
 
     const query: any = {};
     Object.entries(params).forEach(([key, value]) => {
-        if (keysOfIQuery.indexOf(key) > -1 || typeof value !== 'string' || typeof value !== 'number') return;
+        if (keysOfIQuery.indexOf(key) > -1 || (typeof value !== 'string' && typeof value !== 'number')) return;
 
         if (numberParams.indexOf(key) > -1) {
             query[key] = {

@@ -1,3 +1,3 @@
 export default {
-    API_DOC: "/api_doc"
+    API_DOC: "/api-doc"
 }

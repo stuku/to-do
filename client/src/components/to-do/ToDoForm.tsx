@@ -1,7 +1,7 @@
 import AddIcon from '@mui/icons-material/AddCircleOutlined';
 import Box from '@mui/material/Box';
-import { EStatus } from '../../enums/to-do.enum';
-import { flexRowCss, statusOptions } from '../../constants/common';
+import { EStatus, EStatusLabel } from '../../enums/to-do.enum';
+import { flexRowCss, statusValues } from '../../constants/common';
 import FormControl from '@mui/material/FormControl';
 import IconButton from '@mui/material/IconButton';
 import InputLabel from '@mui/material/InputLabel';
@@ -46,9 +46,9 @@ export default function ToDoForm(props: ToDoFormProps): JSX.Element {
           value={status}
           onChange={handleUpdateStatus}
         >
-          {statusOptions.map((option: Status) => (
-            <MenuItem key={option.value} value={option.value}>
-              {option.label}
+          {statusValues.map((value: Status) => (
+            <MenuItem key={value} value={value}>
+              {EStatusLabel[value]}
             </MenuItem>
           ))}
         </Select>

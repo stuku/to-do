@@ -6,12 +6,13 @@ import { MONGODB_URL } from "./secrets";
 import mongoose from "mongoose";
 import morgan from "morgan";
 import path from "path";
-import { RegisterRoutes } from "@routes/routes";
 import { Request, Response } from "express";
 import ROUTE_PATH from "@config/path";
 import { router } from "@routes/index";
 import { Server } from "http";
 import swaggerUi from "swagger-ui-express";
+
+const swaggerDoc = require("src/spec/docs/index");
 
 interface IServer {
     start(port: string | number): void;
@@ -50,12 +51,7 @@ export class AppServer implements IServer {
             .use(bodyParser.json())
             .use(bodyParser.urlencoded({ extended: true }))
             .use(cors())
-            .use(ROUTE_PATH.API_DOC, swaggerUi.serve, swaggerUi.setup(import("@spec/swagger.json")));
-        // async (_req: Request, res: Response): Promise<Response> => {
-        // return res.send(
-        //     swaggerUi.generateHTML(await import("@spec/swagger.json"))
-        // );
-        // }
+            .use(ROUTE_PATH.API_DOC, swaggerUi.serve, swaggerUi.setup(swaggerDoc));
     }
 
     protected setRoutes(): void {
@@ -67,9 +63,6 @@ export class AppServer implements IServer {
             .get("/", (_req: Request, res: Response): void => {
                 res.sendFile(path.join(__dirname, "../../../client/build", "index.html"));
             });
-
-        // tsoa
-        RegisterRoutes(this._app);
     }
 
     public start(port: string | number): void {
