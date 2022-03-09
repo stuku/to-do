@@ -13,17 +13,16 @@ export type TOrder = 'asc' | 'desc';
 interface ToDoTableProps {
   order: TOrder;
   orderBy: string;
-  onRequestSort?: (event: React.MouseEvent<unknown>, property: string) => void;
+  onRequestSort: (event: React.MouseEvent<unknown>, property: string) => void;
 }
 
 export default function ToDoTableHead(props: ToDoTableProps): JSX.Element {
   const { order, orderBy } = props;
-  
+
   const handleSort =
     (property: string) =>
     (event: React.MouseEvent<unknown>): void => {
-      typeof props.onRequestSort == 'function' &&
-        props.onRequestSort(event, property);
+      props.onRequestSort(event, property);
     };
 
   return (
@@ -39,6 +38,7 @@ export default function ToDoTableHead(props: ToDoTableProps): JSX.Element {
             <TableSortLabel
               active={orderBy === headCell.orderId}
               direction={orderBy === headCell.orderId ? order : 'asc'}
+              hideSortIcon={headCell.disableSort}
               onClick={handleSort(headCell.orderId)}
             >
               {headCell.label}

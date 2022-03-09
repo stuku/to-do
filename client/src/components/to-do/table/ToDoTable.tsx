@@ -1,4 +1,5 @@
 import Box from '@mui/material/Box';
+import { ESort } from '../../../enums/common.enum';
 import { IToDo } from '../../../utils/type';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -16,6 +17,7 @@ export interface IToDoTableCell {
   orderId: string;
   align?: 'left' | 'right';
   style?: React.CSSProperties;
+  disableSort: boolean;
 }
 
 interface ToDoTableProps extends ToDoListProps {}
@@ -32,6 +34,7 @@ export default function ToDoTable(props: ToDoTableProps): JSX.Element {
     const isAsc = orderBy === property && order === 'asc';
     setOrder(isAsc ? 'desc' : 'asc');
     setOrderBy(property);
+    props.setSortBy({ property, value: isAsc ? ESort.DSC : ESort.ASC });
   };
   const handleChangePage = (newPage: number) => {
     props.changePageNumber(newPage);

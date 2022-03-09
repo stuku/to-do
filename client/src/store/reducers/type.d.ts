@@ -1,3 +1,4 @@
+import { ESort } from "../../enums/common.enum";
 import { IPagination, IToDo, Status } from "../../utils/type";
 
 export interface IToDoFilterBy {
@@ -5,6 +6,11 @@ export interface IToDoFilterBy {
     title?: string;
     description?: string;
     status?: Status;
+}
+
+export interface ISortBy {
+    property: string;
+    orderBy: ESort.ASC | ESort.DSC;
 }
 
 export interface ICommonState {
@@ -15,6 +21,7 @@ export interface ICommonState {
 export interface IToDoState {
     renderKeyId: number;
     filterBy: IToDoFilterBy;
+    sortBy: ISortBy;
     list: IToDo[];
     pagination: IPagination;
 }

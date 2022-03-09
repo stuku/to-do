@@ -15,11 +15,12 @@ interface IToDoService {
 
 export class ToDoService implements IToDoService {
     public async getAll(query?: IToDoQuery): Promise<Observable<IGetToDosResponse>> {
-        const { __l: pageSize = 10, __p: page = 0 } = query || {};
+        const { __l: pageSize = 10, __p: page = 0, __sv: sortByValue = 1, __sp: sortByProperty = '_id' } = query || {};
 
         const formattedQuery = formatQuery(query);
         const toDos$: Observable<IToDo[]> = from(
             ToDoModel.find(formattedQuery)
+                .sort({ [sortByProperty]: sortByValue })
                 .skip(getSkipNumber(pageSize, page))
                 .limit(pageSize)
                 .exec()

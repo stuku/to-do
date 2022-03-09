@@ -1,11 +1,13 @@
+import { ESort } from '../enums/common.enum';
 import { EStatus } from '../enums/to-do.enum';
+import { ISortBy } from '@store/reducers/type';
 import { IToDoTableCell } from 'src/components/to-do/table/ToDoTable';
 import { Status } from '../utils/type';
 
 export const toDoTableHeadCellProps: IToDoTableCell[] = [
-    { orderId: 'title', label: 'Title' },
-    { orderId: 'status', label: 'Status', align: 'right', style: { flex: '0 0 200px' } },
-    { orderId: '', label: '', style: { flex: '0 0 100px' } }
+    { orderId: 'title', label: 'Title', disableSort: false },
+    { orderId: 'status', label: 'Status', align: 'right', style: { flex: '0 0 200px' }, disableSort: false },
+    { orderId: '', label: '', style: { flex: '0 0 100px' }, disableSort: true }
 ];
 
 export const paginationOptions: number[] = [5, 10, 25];
@@ -20,3 +22,8 @@ export const flexRowCss: React.CSSProperties = {
 };
 
 export const filterByValues: string[] = ['', 'title', 'description'];
+
+export const defaultSortBy: ISortBy = {
+    property: '_id',
+    value: ESort.ASC,
+};

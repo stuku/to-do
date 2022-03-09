@@ -5,6 +5,7 @@ import {
   deleteToDo,
   getToDos,
   setFilterBy,
+  setSortBy,
   updateToDo,
 } from '../../store/actions/to-do.action';
 import { connect } from 'react-redux';
@@ -25,6 +26,7 @@ const dispatchProps = {
   changePageNumber,
   changePageSize,
   setFilterBy,
+  setSortBy,
   setOverlay,
 };
 

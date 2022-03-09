@@ -7,6 +7,8 @@ export type TStatusCode = typeof StatusCodes[keyof typeof StatusCodes];
 export interface IQuery {
     __l?: number;
     __p?: number;
+    __sv?: number;
+    __sp?: string;
 }
 
 export type ToDoParams = Partial<Pick<IToDo, "title" | "description" | "status">>;

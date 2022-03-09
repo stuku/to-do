@@ -1,3 +1,4 @@
+import { defaultSortBy } from './common';
 import { formatPagination } from '../utils/common';
 import { ICommonState, IToDoState } from '../store/reducers/type';
 import { RootState } from '../store/type';
@@ -10,6 +11,7 @@ export const initialCommonState: ICommonState = {
 export const initialToDoState: IToDoState = {
     renderKeyId: (new Date()).getTime(),
     filterBy: {},
+    sortBy: defaultSortBy,
     list: [],
     pagination: formatPagination()
 };

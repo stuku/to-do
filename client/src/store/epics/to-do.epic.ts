@@ -16,9 +16,9 @@ export const getListEpic: Epic = (action$: Observable<GetToDosAction>, state$: S
         ofType(getToDos.type),
         debounceTime(2000),
         switchMap((action: GetToDosAction) => {
-            const { filterBy, pagination } = state$.value.toDo;
+            const { filterBy, sortBy, pagination } = state$.value.toDo;
             return from(api.toDo.getAll(
-                formatToDoQuery(filterBy, pagination))
+                formatToDoQuery(filterBy, sortBy, pagination))
             ).pipe(
                 mergeMap((result: IGetToDosResponse) => [setToDos(result), setOverlay(false)]),
                 catchError((error: Error) => of(operate([action.type, EOperation.READ, error])))

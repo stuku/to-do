@@ -3,9 +3,10 @@ import {
     NumberParam,
     StringParam
 } from 'serialize-query-params';
+import { defaultSortBy } from 'src/constants/common';
 import { formatPagination } from './common';
 import { IPagination, IToDoQuery } from './type';
-import { IToDoFilterBy } from '@store/reducers/type';
+import { ISortBy, IToDoFilterBy } from '@store/reducers/type';
 import { stringify } from 'query-string';
 
 export function encodeToDoQuery(query: IToDoQuery | undefined): string {
@@ -16,9 +17,11 @@ export function encodeToDoQuery(query: IToDoQuery | undefined): string {
     ));
 }
 
-export function formatToDoQuery(filterBy: IToDoFilterBy = {}, pagination: IPagination = formatPagination()): IToDoQuery {
+export function formatToDoQuery(filterBy: IToDoFilterBy = {}, sortBy: ISortBy = defaultSortBy, pagination: IPagination = formatPagination()): IToDoQuery {
     return {
         ...(filterBy || {}),
+        __sp: sortBy.property,
+        __sv: sortBy.value,
         __l: pagination?.pageSize,
         __p: pagination?.page
     }

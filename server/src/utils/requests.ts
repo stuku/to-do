@@ -1,15 +1,16 @@
 import { forceParseInt } from "./common";
 import { IQuery } from "./type";
 
-export const keysOfIQuery: string[] = ["__l", "__p"];
-export const numberParams: string[] = ["status"];
+const keysOfPagination: string[] = ["__l", "__p"];
+const keysOfSort: string[] = ["__sv", "__sp"];
+const numberParams: string[] = ["status"];
 
 export function formatQuery(params: IQuery | undefined): any {
     if (!params) return {};
 
     const query: any = {};
     Object.entries(params).forEach(([key, value]) => {
-        if (keysOfIQuery.indexOf(key) > -1 || (typeof value !== "string" && typeof value !== "number")) return;
+        if (keysOfPagination.indexOf(key) > -1 || keysOfSort.indexOf(key) > -1 || (typeof value !== "string" && typeof value !== "number")) return;
 
         if (numberParams.indexOf(key) > -1) {
             query[key] = {

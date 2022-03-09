@@ -8,6 +8,7 @@ import { ToDoService } from '@services/to-do.service';
 
 const mockedToDoModel: any = {
   find: jest.fn(() => mockedToDoModel),
+  sort: jest.fn(() => mockedToDoModel),
   skip: jest.fn(() => mockedToDoModel),
   limit: jest.fn(() => mockedToDoModel),
 };
@@ -40,16 +41,24 @@ describe('Test methods in to-do service', () => {
         .unsubscribe();
     });
 
-    it('Should return to-dos filtered by query', async () => {
+    it('Should return to-dos filtered and sorted by query', async () => {
       ToDoModel.find = jest.fn().mockImplementationOnce(() => ({
-        skip: () => ({
-          limit: () => ({
-            exec: () =>
-              mockedDb.toDos.filter((toDo) => toDo.title.match(/^te/)),
+        sort: () => ({
+          skip: () => ({
+            limit: () => ({
+              exec: () =>
+                mockedDb.toDos
+                  .filter((toDo) => toDo.title.match(/^te/))
+                  .sort((a, b) => (a.title > b.title ? 1 : -1)),
+            }),
           }),
         }),
       }));
-      const result$ = await toDoService.getAll({ title: 'te' });
+      const result$ = await toDoService.getAll({
+        title: 'te',
+        __sv: 1,
+        __sp: 'title',
+      });
       result$
         .subscribe((data: IGetToDosResponse) => {
           expect(data).toHaveProperty('list');
@@ -60,11 +69,13 @@ describe('Test methods in to-do service', () => {
 
     it('Should failed and throw InvalidParamsError with wrong query', async () => {
       ToDoModel.find = jest.fn().mockImplementationOnce(() => ({
-        skip: () => ({
-          limit: () => ({
-            exec: () => {
-              throw new InvalidParamsError('');
-            },
+        sort: () => ({
+          skip: () => ({
+            limit: () => ({
+              exec: () => {
+                throw new InvalidParamsError('');
+              },
+            }),
           }),
         }),
       }));

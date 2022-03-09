@@ -1,7 +1,7 @@
 import { AjaxResponse } from 'rxjs/ajax';
 import { createAction } from '@reduxjs/toolkit';
-import { IToDoFilterBy } from '@store/reducers/type';
 import { IGetToDosResponse, IToDo, IUpdateToDoPayload, ToDoParams } from '../../utils/type';
+import { ISortBy, IToDoFilterBy } from '@store/reducers/type';
 
 export const GET_TO_DOS: string = 'GET_TO_DOS';
 export const SET_TO_DOS: string = 'SET_TO_DOS';
@@ -14,6 +14,7 @@ export const DELETE_TO_DO: string = 'DELETE_TO_DO';
 export const CHANGE_PAGE_NUMBER: string = 'CHANGE_PAGE_NUMBER';
 export const CHANGE_PAGE_SIZE: string = 'CHANGE_PAGE_SIZE';
 export const SET_FILTER_BY: string = 'SET_FILTER_BY';
+export const SET_SORT_BY: string = 'SET_SORT_BY';
 
 export const getToDos = createAction(GET_TO_DOS);
 export const setToDos = createAction<IGetToDosResponse>(SET_TO_DOS);
@@ -26,3 +27,4 @@ export const deleteToDo = createAction<string>(DELETE_TO_DO);
 export const changePageNumber = createAction<number>(CHANGE_PAGE_NUMBER);
 export const changePageSize = createAction<number>(CHANGE_PAGE_SIZE);
 export const setFilterBy = createAction<IToDoFilterBy>(SET_FILTER_BY);
+export const setSortBy = createAction<ISortBy>(SET_SORT_BY);

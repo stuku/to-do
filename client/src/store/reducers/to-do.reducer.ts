@@ -1,6 +1,5 @@
-import { ADD_TODO_SUCCESSFULLY, CHANGE_PAGE_NUMBER, CHANGE_PAGE_SIZE, SET_FILTER_BY, SET_TO_DOS, UPDATE_TODO_SUCCESSFULLY } from '../actions/to-do.action';
+import { ADD_TODO_SUCCESSFULLY, CHANGE_PAGE_NUMBER, CHANGE_PAGE_SIZE, SET_FILTER_BY, SET_SORT_BY, SET_TO_DOS, UPDATE_TODO_SUCCESSFULLY } from '../actions/to-do.action';
 import { createReducer } from '@reduxjs/toolkit';
-import { formatPagination } from '../../utils/common';
 import { initialToDoState } from '../../constants/state';
 import { IToDo } from '../../utils/type';
 
@@ -32,6 +31,12 @@ const toDoReducer = createReducer(initialToDoState, {
     },
     [SET_FILTER_BY]: (state, action) => {
         state.filterBy = action?.payload;
+        state.pagination.page = 0;
+        state.list = [];
+        state.renderKeyId += 1;
+    },
+    [SET_SORT_BY]: (state, action) => {
+        state.sortBy = action?.payload;
         state.pagination.page = 0;
         state.list = [];
         state.renderKeyId += 1;
