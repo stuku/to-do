@@ -26,13 +26,5 @@
   },
   "include": ["src/**/*.ts", "src/**/*.tsx", "tests/**/*.tsx"],
   "exclude": ["node_modules", ".vscode"],
-  "types": ["@emotion/react/types/css-prop"],
-  "proxy": {
-    "/api": {
-      "target": "http://localhost:49170"
-    },
-    "/api-doc": {
-      "target": "http://localhost:49170"
-    }
-  }
+  "types": ["@emotion/react/types/css-prop"]
 }

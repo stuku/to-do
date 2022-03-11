@@ -16,22 +16,33 @@ Typescript + Express + Mongoose + React + Redux + Redux-Observable + RxJS + Jest
 
 ## How to Start
 
-### cd ./client
+### Start Manually
+
+#### Frontend
 ```
+cd ./client
+npm install
 npm run start
 ```
 It will run on port 3000 by default.
 
-### cd ./sever
+#### Backend
 ```
+cd ./sever
+npm install
 npm run dev
 ```
 It will run on port 49170 by default.
 
+## Endpoints
+
+You can now view client in the browser: [http://localhost:3000/](http://localhost:3000/)
+
 The swagger UI would be accessible at: [http://localhost:49170/api-doc/](http://localhost:49170/api-doc/)
 
-Service and utils would be tested by:
+Test report of service and utils for server would be generated after:
 ```
+cd ./server
 npm run test
 ```
 

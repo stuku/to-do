@@ -30,6 +30,7 @@
   "devDependencies": {
     "@reduxjs/toolkit": "^1.8.0",
     "@types/react-redux": "^7.1.23",
+    "http-proxy-middleware": "^2.0.3",
     "react-redux": "^7.2.6"
   },
   "scripts": {
@@ -55,6 +56,5 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
-  "proxy": "http://localhost:49170"
+  }
 }
