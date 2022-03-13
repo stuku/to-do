@@ -10,7 +10,7 @@ describe('Test methods in common util', () => {
       expect(forceParseInt('1')).toBe(1);
     });
 
-    it('Should return -1 if parameter is not numeric', () => {
+    it('Should return NaN if parameter is not numeric', () => {
       expect(forceParseInt('x')).toBe(NaN);
     });
   });

@@ -4,7 +4,6 @@ export function forceParseInt(numeric: string | number): number {
     try {
         return typeof numeric === 'string' ? parseInt(numeric) : numeric;
     } catch (e) {
-        console.error('parse error');
     }
     return NaN;
 }

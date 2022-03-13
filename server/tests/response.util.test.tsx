@@ -41,14 +41,26 @@ describe('Test methods in response util', () => {
   });
 
   describe('Test method formatGetToDosResponse', () => {
-    it('Should return default get-to-dos response successfully', () => {
-      expect(formatGetToDosResponse([[], 1], 5, 0)).toStrictEqual({
+    it('Should return get-to-dos response successfully', () => {
+      expect(formatGetToDosResponse([[], 0], 10, 0)).toStrictEqual({
         list: [],
         pagination: {
-          totalCount: 1,
-          pageCount: 1,
-          pageSize: 5,
+          totalCount: 0,
+          pageCount: 0,
+          pageSize: 10,
           page: 0,
+        },
+      });
+    });
+
+    it('Should return get-to-dos response with NaN values', () => {
+      expect(formatGetToDosResponse([[], NaN], NaN, NaN)).toStrictEqual({
+        list: [],
+        pagination: {
+          totalCount: NaN,
+          pageCount: NaN,
+          pageSize: NaN,
+          page: NaN,
         },
       });
     });

@@ -23,16 +23,16 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">94.11% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>16/17</span>
+                <span class='fraction'>17/17</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">75% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>6/8</span>
+                <span class='fraction'>8/8</span>
             </div>
         
             
@@ -44,9 +44,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">93.33% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>14/15</span>
+                <span class='fraction'>15/15</span>
             </div>
         
             
@@ -88,53 +88,47 @@
 <a name='L23'></a><a href='#L23'>23</a>
 <a name='L24'></a><a href='#L24'>24</a>
 <a name='L25'></a><a href='#L25'>25</a>
-<a name='L26'></a><a href='#L26'>26</a>
-<a name='L27'></a><a href='#L27'>27</a>
-<a name='L28'></a><a href='#L28'>28</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L26'></a><a href='#L26'>26</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">10x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { forceParseInt } from "./common";
-import { IQuery } from "./type";
+import { IToDoQuery } from "./type";
 &nbsp;
 const keysOfPagination: string[] = ["__l", "__p"];
 const keysOfSort: string[] = ["__sv", "__sp"];
 const numberParams: string[] = ["status"];
 &nbsp;
-export function formatQuery(params: IQuery | undefined): any {
+export function formatQuery(params: IToDoQuery | undefined): any {
     if (!params) return {};
 &nbsp;
     const query: any = {};
     Object.entries(params).forEach(([key, value]) =&gt; {
-        if (keysOfPagination.indexOf(key) &gt; -1 || keysOfSort.indexOf(key) &gt; -1 || (typeof value !== "string" &amp;&amp; <span class="branch-3 cbranch-no" title="branch not covered" >typeof value !== "number")</span>) return;
+        if (keysOfPagination.indexOf(key) &gt; -1 || keysOfSort.indexOf(key) &gt; -1 || (typeof value !== "string" &amp;&amp; typeof value !== "number")) return;
 &nbsp;
-        <span class="missing-if-branch" title="if path not taken" >I</span>if (numberParams.indexOf(key) &gt; -1) {
-<span class="cstat-no" title="statement not covered" >            query[key] = {</span>
-                $eq: forceParseInt(value)
-            };
+        if (numberParams.indexOf(key) &gt; -1) {
+            query[key] = { $eq: forceParseInt(value) };
         } else {
             query[key] = { $regex: new RegExp("^" + value, "i") };
         }
@@ -151,7 +145,7 @@ export function getSkipNumber(pageSize: number, page: number): number {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at Wed Mar 09 2022 17:42:59 GMT+0800 (Taipei Standard Time)
+                at Sun Mar 13 2022 16:55:14 GMT+0800 (Taipei Standard Time)
             </div>
         <script src="../prettify.js"></script>
         <script>

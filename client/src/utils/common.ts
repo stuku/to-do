@@ -6,7 +6,6 @@ export function forceParseInt(numeric: string | number): number {
     try {
         return typeof numeric === 'string' ? parseInt(numeric) : numeric;
     } catch (e) {
-        console.error('parse error');
     }
     return NaN;
 }
@@ -32,6 +31,7 @@ export function capitalize(str: string): string {
 }
 
 export function getToastMessage(result: OperateResponse): string {
+    if (!Array.isArray(result)) return '';
     return result.join(' ');
 }
 

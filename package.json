@@ -6,8 +6,17 @@
     "main": "index.js",
     "license": "ISC",
     "scripts": {
-        "server": "npm start --prefix server",
-        "client": "npm start --prefix client",
-        "dev": "concurrently \"npm run server\" \"npm run client\""
+        "server-install": "npm install --prefix server",
+        "client-install": "npm install --prefix client",
+        "server-dev": "npm run dev --prefix server",
+        "client-dev": "npm run start --prefix client",
+        "server-test": "npm run test --prefix server",
+        "client-test": "npm run test --prefix client",
+        "start-install": "concurrently \"npm run server-install\" \"npm run client-install\"",
+        "dev": "concurrently \"npm run server-dev\" \"sleep 6 && npm run client-dev\"",
+        "test": "concurrently \"npm run server-test\" \"npm run client-test\""
+    },
+    "dependencies": {
+        "concurrently": "^7.0.0"
     }
 }

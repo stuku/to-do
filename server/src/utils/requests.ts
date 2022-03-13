@@ -1,11 +1,11 @@
 import { forceParseInt } from "./common";
-import { IQuery } from "./type";
+import { IToDoQuery } from "./type";
 
 const keysOfPagination: string[] = ["__l", "__p"];
 const keysOfSort: string[] = ["__sv", "__sp"];
 const numberParams: string[] = ["status"];
 
-export function formatQuery(params: IQuery | undefined): any {
+export function formatQuery(params: IToDoQuery | undefined): any {
     if (!params) return {};
 
     const query: any = {};
@@ -13,9 +13,7 @@ export function formatQuery(params: IQuery | undefined): any {
         if (keysOfPagination.indexOf(key) > -1 || keysOfSort.indexOf(key) > -1 || (typeof value !== "string" && typeof value !== "number")) return;
 
         if (numberParams.indexOf(key) > -1) {
-            query[key] = {
-                $eq: forceParseInt(value)
-            };
+            query[key] = { $eq: forceParseInt(value) };
         } else {
             query[key] = { $regex: new RegExp("^" + value, "i") };
         }

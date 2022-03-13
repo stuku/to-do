@@ -39,7 +39,7 @@ export function getObserver(res: Response): Observer<any> {
     };
 }
 
-export function formatGetToDosResponse([list = [], totalCount = 0]: [IToDo[], number], pageSize: number, page: number): IGetToDosResponse {
+export function formatGetToDosResponse([list, totalCount]: [IToDo[], number], pageSize: number, page: number): IGetToDosResponse {
     return {
         list: list || [],
         pagination: formatPagination(totalCount, pageSize, page)

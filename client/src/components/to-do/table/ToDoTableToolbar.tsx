@@ -32,8 +32,8 @@ interface ToDoTableToolbarProps {
 export default function ToDoTableToolbar(
   props: ToDoTableToolbarProps
 ): JSX.Element {
-  const [subject, setSubject] = useState<BehaviorSubject<string> | null>(null);
   const { isDisabled, numSelected } = props;
+  const [subject, setSubject] = useState<BehaviorSubject<string> | null>(null);
   const [property, keyword] = Object.entries(props.filterBy || {})[0] || [];
   const [newProperty, setNewProperty] = useState<string>(property || '');
   const [newKeyword, setNewKeyword] = useState<string>(keyword || '');
@@ -62,7 +62,7 @@ export default function ToDoTableToolbar(
     }
   }, [subject]);
 
-  const handleUpdateFilterBy = (event: SelectChangeEvent): void => {
+  const handleUpdateProperty = (event: SelectChangeEvent): void => {
     setNewProperty(event.target.value);
 
     if (!newKeyword) return;
@@ -113,7 +113,7 @@ export default function ToDoTableToolbar(
           label="Filter By"
           labelId="filter-by-label"
           value={newProperty}
-          onChange={handleUpdateFilterBy}
+          onChange={handleUpdateProperty}
         >
           {filterByValues.map((value: string) => (
             <MenuItem key={value} value={value}>
