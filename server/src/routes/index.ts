@@ -4,15 +4,20 @@ import { Router } from "express";
 import { ToDoController } from "@controllers/to-do.controller";
 import { toDoModelValidation } from "src/constants/validation";
 
-export abstract class CustomRoute {
-    protected router = Router();
+interface ICustomRoute {
+    getRouter(): Router;
+    getPrefix(): string;
+}
+
+export default abstract class CustomRoute implements ICustomRoute {
+    protected router: Router = Router();
     protected prefix: string = "/";
     protected abstract setRoutes(): void;
 
-    public getRouter() {
+    public getRouter(): Router {
         return this.router;
     }
-    public getPrefix() {
+    public getPrefix(): string {
         return this.prefix;
     }
 }

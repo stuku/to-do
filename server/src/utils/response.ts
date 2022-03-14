@@ -1,5 +1,6 @@
 import { formatPagination } from "./common";
 import { IGetToDosResponse, IResponse, TStatusCode } from "./type";
+import { InvalidParamsError } from "./errors";
 import { IToDo } from "@models/to-do.model";
 import { Observer } from "rxjs";
 import { Response } from "express";
@@ -32,6 +33,9 @@ export function generateResponse(
 }
 
 export function getObserver(res: Response): Observer<any> {
+    if (!res || typeof res.json !== "function" || typeof res.status !== "function") {
+        throw new InvalidParamsError(res);
+    }
     return {
         next: (result: any) => res.status(StatusCodes.OK).json(generateResponse(StatusCodes.OK, "", result)),
         error: (error: Error) => res.status(StatusCodes.BAD_REQUEST).json(generateResponse(StatusCodes.BAD_REQUEST, JSON.stringify(error), null)),

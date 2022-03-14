@@ -5,6 +5,9 @@
     "author": "stku",
     "main": "index.js",
     "license": "ISC",
+    "dependencies": {
+        "concurrently": "^7.0.0"
+    },
     "scripts": {
         "server-install": "npm install --prefix server",
         "client-install": "npm install --prefix client",
@@ -14,9 +17,6 @@
         "client-test": "npm run test --prefix client",
         "start-install": "concurrently \"npm run server-install\" \"npm run client-install\"",
         "dev": "concurrently \"npm run server-dev\" \"sleep 6 && npm run client-dev\"",
-        "test": "concurrently \"npm run server-test\" \"npm run client-test\""
-    },
-    "dependencies": {
-        "concurrently": "^7.0.0"
+        "test": "concurrently \"npm run server-test\""
     }
 }

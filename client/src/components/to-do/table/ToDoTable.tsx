@@ -27,6 +27,11 @@ export default function ToDoTable(props: ToDoTableProps): JSX.Element {
   const [order, setOrder] = useState<TOrder>('asc');
   const [orderBy, setOrderBy] = useState<string>('title');
 
+  useEffect(() => {
+    props.setOverlay(true);
+    props.getAll();
+  }, [pagination.pageSize, pagination.page, renderKeyId]);
+
   const handleRequestSort = (
     event: React.MouseEvent<unknown>,
     property: string
@@ -42,11 +47,6 @@ export default function ToDoTable(props: ToDoTableProps): JSX.Element {
   const handleChangePageSize = (newPageSize: number) => {
     props.changePageSize(newPageSize);
   };
-
-  useEffect(() => {
-    props.setOverlay(true);
-    props.getAll();
-  }, [pagination.pageSize, pagination.page, renderKeyId]);
 
   return (
     <Box>

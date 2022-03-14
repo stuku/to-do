@@ -4,11 +4,11 @@ import { IToDoQuery } from '@utils/type';
 
 describe('Test methods in request util', () => {
   describe('Test method formatQuery', () => {
-    it(`Should return empty query`, () => {
+    it('Should return empty query', () => {
       expect(formatQuery(undefined)).toStrictEqual({});
     });
 
-    it(`Should return formatted query`, () => {
+    it('Should return formatted query', () => {
       const query: IToDoQuery = {
         __l: 10,
         __p: 0,

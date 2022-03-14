@@ -1,5 +1,14 @@
-import { formatGetToDosResponse, generateResponse } from '@utils/response';
+import {
+  formatGetToDosResponse,
+  generateResponse,
+  getObserver,
+} from '@utils/response';
 import { StatusCodes } from 'http-status-codes';
+
+const mockedResponse: any = {
+  json: jest.fn(() => mockedResponse),
+  status: jest.fn(() => mockedResponse),
+};
 
 describe('Test methods in response util', () => {
   describe('Test method generateResponse', () => {
@@ -37,6 +46,14 @@ describe('Test methods in response util', () => {
         message: 'bad gateway',
         data: null,
       });
+    });
+  });
+
+  describe('Test method getObserver', () => {
+    it('Should return observer successfully', () => {
+      expect(getObserver(mockedResponse)).toHaveProperty('next');
+      expect(getObserver(mockedResponse)).toHaveProperty('error');
+      expect(getObserver(mockedResponse)).toHaveProperty('complete');
     });
   });
 

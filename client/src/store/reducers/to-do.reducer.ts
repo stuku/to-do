@@ -10,15 +10,15 @@ const toDoReducer = createReducer(initialToDoState, {
         state.pagination = pagination;
     },
     [ADD_TODO_SUCCESSFULLY]: (state, action) => {
-        state.list.splice(0, 0, action?.payload?.response?.data);
-        if (state.list.length === state.pagination.pageSize) {
-            state.list.pop();
-        }
+        state.list = [action?.payload?.response?.data, ...state.list].slice(0, state.pagination.pageSize);
     },
     [UPDATE_TODO_SUCCESSFULLY]: (state, action) => {
-        const idx: number = state.list.findIndex((existingToDo: IToDo) => existingToDo._id === action?.payload?.response?.data?._id);
-        state.list[idx] = action?.payload?.response?.data;
-        state.renderKeyId += 1;
+        state.list = state.list.map((existingToDo: IToDo): IToDo => {
+            if (existingToDo._id === action?.payload?.response?.data?._id) {
+                return action?.payload?.response?.data;
+            }
+            return existingToDo;
+        });
     },
     [CHANGE_PAGE_NUMBER]: (state, action) => {
         state.pagination.page = action?.payload;
@@ -31,6 +31,8 @@ const toDoReducer = createReducer(initialToDoState, {
     },
     [SET_FILTER_BY]: (state, action) => {
         state.filterBy = action?.payload;
+        state.pagination.totalCount = 0;
+        state.pagination.pageCount = 0;
         state.pagination.page = 0;
         state.list = [];
         state.renderKeyId += 1;

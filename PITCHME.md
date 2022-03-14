@@ -1,3 +1,10 @@
+---
+marp: true
+backgroundColor: BlanchedAlmond
+---
+
+![bg opacity:0.8](https://webgradients.com/public/webgradients_png/007%20Sunny%20Morning.png)
+
 # To-Do List With Restful Backend
 
 Implemented with:
@@ -25,6 +32,8 @@ npm run test
 
 ---
 
+![bg right width:300 opacity:0.2](https://www.clipartmax.com/png/full/166-1661137_follow-the-coin-variance-functional-programming-logo.png)
+
 ## Functional Programming
 
 - Orthogonal, not opposites to OOP
@@ -41,6 +50,8 @@ npm run test
   - **Server**: Services
 
 ---
+
+![bg left](https://blog.logrocket.com/wp-content/uploads/2019/07/rxjsobservables.png)
 
 ## Observables, Observers
 

@@ -49,7 +49,7 @@ export default function ToDoTableToolbar(
         .pipe(
           map((str: string) => str.trim()),
           distinctUntilChanged(),
-          filter((str: string) => str.length >= 2),
+          filter((str: string) => str.length >= 3),
           debounceTime(800)
         )
         .subscribe((value: string) => {

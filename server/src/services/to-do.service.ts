@@ -61,7 +61,7 @@ export class ToDoService implements IToDoService {
             throw new InvalidParamsError({ id, toDo });
         }
 
-        return of(await ToDoModel.findOneAndUpdate({ _id: id }, { $set: toDo }, { returnNewDocument: true })).pipe(
+        return of(await ToDoModel.findOneAndUpdate({ _id: id }, { $set: toDo }, { returnOriginal: false })).pipe(
             switchMap((result: null | IToDo) => {
                 if (!result) {
                     throw new NotFoundError();

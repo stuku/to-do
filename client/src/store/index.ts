@@ -6,7 +6,7 @@ import services from '../services/index';
 import { initialState } from '../constants/state';
 
 export const epicMiddleware = createEpicMiddleware({
-  dependencies: services,
+  dependencies: services.api,
 });
 
 // configure middleware
