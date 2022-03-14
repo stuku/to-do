@@ -46,5 +46,5 @@ export interface IGetToDosResponse {
 
 export interface IUpdateToDoPayload {
     id: string;
-    data: ToDoParams;
+    data: Omit<IToDo, '_id'>;
 }

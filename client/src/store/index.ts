@@ -1,12 +1,13 @@
+import { Action, applyMiddleware, compose, createStore, } from 'redux';
+import api, { IEpicDependency } from '../services/apis';
 import { createEpicMiddleware } from 'redux-observable';
-import { createStore, applyMiddleware, compose } from 'redux';
-import rootReducer from './reducers';
-import rootEpic from './epics';
-import services from '../services/index';
 import { initialState } from '../constants/state';
+import rootEpic from './epics';
+import rootReducer from './reducers';
+import { RootState } from './type';
 
-export const epicMiddleware = createEpicMiddleware({
-  dependencies: services.api,
+export const epicMiddleware = createEpicMiddleware<Action, Action, RootState, IEpicDependency>({
+  dependencies: api,
 });
 
 // configure middleware

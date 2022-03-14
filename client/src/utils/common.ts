@@ -1,6 +1,6 @@
 import { EStatus } from '../enums/to-do.enum';
 import { IPagination, Status } from './type';
-import { OperateResponse } from '../store/actions/type';
+import { OperatePayload } from '../store/actions/type';
 
 export function forceParseInt(numeric: string | number): number {
     try {
@@ -29,7 +29,7 @@ export function capitalize(str: string): string {
     return str.charAt(0).toUpperCase() + str.slice(1);
 }
 
-export function getToastMessage(result: OperateResponse): string {
+export function getToastMessage(result: OperatePayload): string {
     if (!Array.isArray(result)) return '';
     return result.join(' ');
 }

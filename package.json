@@ -17,6 +17,6 @@
         "client-test": "npm run test --prefix client",
         "start-install": "concurrently \"npm run server-install\" \"npm run client-install\"",
         "dev": "concurrently \"npm run server-dev\" \"sleep 6 && npm run client-dev\"",
-        "test": "concurrently \"npm run server-test\""
+        "test": "concurrently \"npm run server-test\" \"npm run client-test\""
     }
 }

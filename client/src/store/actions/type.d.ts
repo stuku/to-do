@@ -1,4 +1,4 @@
-export type OperateResponse = [Action, Operation, any];
+export type OperatePayload = [Action, Operation, any];
 
 export type ToastAction = ReturnType<typeof toast>;
 export type SetOverlayAction = ReturnType<typeof setOverlay>;

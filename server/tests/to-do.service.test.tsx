@@ -1,17 +1,11 @@
 import { clearDb, connectDb, disconnectDb } from './db';
+import { EStatus } from '@enums/to-do.enum';
 import { IGetToDosResponse } from '@utils/type';
 import { InvalidParamsError, NotFoundError, UnknownError } from '@utils/errors';
-import mockedDb from './mocked-db.json';
 import { lastValueFrom } from 'rxjs';
+import mockedDb from './mocked-db.json';
 import ToDoModel, { IToDo } from '@models/to-do.model';
 import { ToDoService } from '@services/to-do.service';
-
-const mockedToDoModel: any = {
-  find: jest.fn(() => mockedToDoModel),
-  sort: jest.fn(() => mockedToDoModel),
-  skip: jest.fn(() => mockedToDoModel),
-  limit: jest.fn(() => mockedToDoModel),
-};
 
 beforeAll(async () => await connectDb());
 afterEach(async () => await clearDb());
@@ -100,7 +94,7 @@ describe('Test methods in to-do service', () => {
 
     it('Should failed and throw InvalidParamsError if length of given title less than 3', async () => {
       await expect(
-        toDoService.addOne({ title: 'a', status: 1 })
+        toDoService.addOne({ title: 'a', status: EStatus.DOING })
       ).rejects.toThrowError(InvalidParamsError);
     });
 
@@ -129,7 +123,7 @@ describe('Test methods in to-do service', () => {
 
     it('Should failed and throw InvalidParamsError if length of given title less than 3', async () => {
       await expect(
-        toDoService.updateOne(tmpToDoId, { title: 'b', status: 1 })
+        toDoService.updateOne(tmpToDoId, { title: 'b', status: EStatus.DOING })
       ).rejects.toThrowError(InvalidParamsError);
     });
 

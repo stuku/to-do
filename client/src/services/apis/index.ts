@@ -1,5 +1,11 @@
-import * as toDo from './to-do';
+import toDo, { IToDoApi } from './to-do';
 
-export default {
+export interface IEpicDependency {
+    toDo: IToDoApi;
+}
+
+const api: IEpicDependency = {
     toDo
 };
+
+export default api;

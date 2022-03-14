@@ -3,7 +3,7 @@ import {
     NumberParam,
     StringParam
 } from 'serialize-query-params';
-import { defaultSortBy } from 'src/constants/common';
+import { defaultSortBy } from '../constants/common';
 import { formatPagination } from './common';
 import { IPagination, IToDoQuery } from './type';
 import { ISortBy, IToDoFilterBy } from '@store/reducers/type';

@@ -8,5 +8,4 @@ export const operateEpic: Epic<OperateAction> = (action$: Observable<OperateActi
     action$.pipe(
         ofType(operate.type),
         mergeMap((action: OperateAction) => [setOverlay(false), toast(action.payload)]),
-        catchError((error: Error) => of(setOverlay(false)))
     );
