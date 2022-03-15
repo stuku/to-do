@@ -9,17 +9,31 @@ module.exports = {
             content: {
                 'application/json': {
                     schema: {
-                        $ref: '#/components/schemas/ToDoInput'
+                        $ref: '#/components/schemas/ToDoParams'
                     }
                 }
             }
         },
         responses: {
             '200': {
-                description: 'To-do created successfully'
+                description: 'To-do created successfully',
+                content: {
+                    'application/json': {
+                        schema: {
+                            $ref: '#/components/schemas/CreateUpdateDeleteResponse'
+                        }
+                    }
+                }
             },
             '500': {
-                description: 'Server error'
+                description: 'Server error',
+                content: {
+                    'application/json': {
+                        schema: {
+                            $ref: '#/components/schemas/ErrorResponse'
+                        }
+                    }
+                }
             }
         }
     }

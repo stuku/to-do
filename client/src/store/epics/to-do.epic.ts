@@ -1,4 +1,4 @@
-import { addToDo, deleteToDo, getToDos, updateToDoSuccessFully, setToDos, updateToDo, addToDoSuccessFully } from '../actions/to-do.action';
+import { addToDo, addToDoSuccessFully, deleteToDo, getToDos, setToDos, updateToDo, updateToDoSuccessFully } from '../actions/to-do.action';
 import { AddToDoAction, DeleteToDoAction, GetToDosAction, UpdateToDoAction } from '../actions/type';
 import { AjaxResponse } from 'rxjs/ajax';
 import { IEpicDependency } from '../../services/apis';

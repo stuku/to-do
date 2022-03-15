@@ -51,11 +51,21 @@ module.exports = {
                 content: {
                     'application/json': {
                         schema: {
-                            $ref: '#/components/schemas/ToDo'
+                            $ref: '#/components/schemas/GetResponse'
                         }
                     }
                 }
-            }
+            },
+            '500': {
+                description: 'Server error',
+                content: {
+                    'application/json': {
+                        schema: {
+                            $ref: '#/components/schemas/ErrorResponse'
+                        }
+                    }
+                }
+            },
         }
     }
 }

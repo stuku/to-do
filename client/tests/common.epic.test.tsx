@@ -1,7 +1,5 @@
 import { ADD_TO_DO } from '../src/store/actions/to-do.action';
 import { EOperation } from '../src/enums/common.enum';
-import { formatPagination } from '../src/utils/common';
-import { IGetToDosResponse } from '../src/utils/type';
 import { initialState } from '../src/constants/state';
 import { Observable, Subject } from 'rxjs';
 import { operate, setOverlay, toast } from '../src/store/actions/common.action';
@@ -24,11 +22,6 @@ describe('Test common epics', () => {
 
     it('Should hide overlay and toast', () => {
       testScheduler.run(({ cold, expectObservable }) => {
-        const mockedResponse: IGetToDosResponse = {
-          list: [],
-          pagination: formatPagination(),
-        };
-
         const action$: Observable<OperateAction> = cold<OperateAction>('(a|)', {
           a: operate(mockedPayload),
         });

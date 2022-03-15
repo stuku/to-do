@@ -32,7 +32,7 @@ module.exports = {
                     }
                 }
             },
-            ToDoInput: {
+            ToDoParams: {
                 type: 'object',
                 properties: {
                     title: {
@@ -52,7 +52,7 @@ module.exports = {
                     }
                 }
             },
-            Error: {
+            GetResponse: {
                 type: 'object',
                 properties: {
                     code: {
@@ -62,10 +62,44 @@ module.exports = {
                         type: 'string'
                     },
                     data: {
-                        type: 'any'
+                        type: 'array',
+                        items: {
+                            $ref: '#/components/schemas/ToDo'
+                        }
+                    }
+                }
+            },
+            CreateUpdateDeleteResponse: {
+                type: 'object',
+                properties: {
+                    code: {
+                        type: 'string'
+                    },
+                    message: {
+                        type: 'string'
+                    },
+                    data: {
+                        description: 'The item which has been manipulated',
+                        type: 'object',
+                        $ref: '#/components/schemas/ToDo'
+                    }
+                }
+            },
+            ErrorResponse: {
+                type: 'object',
+                properties: {
+                    code: {
+                        type: 'string'
+                    },
+                    message: {
+                        type: 'string'
+                    },
+                    data: {
+                        description: 'Error JSON string',
+                        type: 'string'
                     }
                 }
             }
         }
-    }
+    },
 }

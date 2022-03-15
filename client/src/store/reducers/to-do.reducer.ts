@@ -2,6 +2,7 @@ import { ADD_TODO_SUCCESSFULLY, CHANGE_PAGE_NUMBER, CHANGE_PAGE_SIZE, SET_FILTER
 import { createReducer } from '@reduxjs/toolkit';
 import { initialToDoState } from '../../constants/state';
 import { IToDo } from '../../utils/type';
+import { replaceElementIfExistedArray, unshiftFixLengthArray } from '../../utils/common';
 
 const toDoReducer = createReducer(initialToDoState, {
     [SET_TO_DOS]: (state, action) => {
@@ -10,15 +11,11 @@ const toDoReducer = createReducer(initialToDoState, {
         state.pagination = pagination;
     },
     [ADD_TODO_SUCCESSFULLY]: (state, action) => {
-        state.list = [action?.payload?.response?.data, ...state.list].slice(0, state.pagination.pageSize);
+        state.list = unshiftFixLengthArray(action?.payload?.response?.data, state.list, state.pagination.pageSize);
     },
     [UPDATE_TODO_SUCCESSFULLY]: (state, action) => {
-        state.list = state.list.map((existingToDo: IToDo): IToDo => {
-            if (existingToDo._id === action?.payload?.response?.data?._id) {
-                return action?.payload?.response?.data;
-            }
-            return existingToDo;
-        });
+        const compare = (target: IToDo, existed: IToDo): boolean => target._id === existed._id;
+        state.list = replaceElementIfExistedArray(action?.payload?.response?.data, state.list, compare);
     },
     [CHANGE_PAGE_NUMBER]: (state, action) => {
         state.pagination.page = action?.payload;

@@ -48,3 +48,13 @@ export function mapBadgeColor(status: Status): 'inherit' | 'primary' | 'secondar
             return 'error';
     }
 }
+
+export function unshiftFixLengthArray(element: any, list: any[] = [], length: number = 10): any[] {
+    if (!Array.isArray(list) || list.length === 0) return [element];
+    return [element, ...list].slice(0, length);
+}
+
+export function replaceElementIfExistedArray(element: any, list: any[] = [], compare: Function): any[] {
+    if (!Array.isArray(list) || list.length === 0) return [element];
+    return list.map((existed: any): any => compare(element, existed) ? element : existed);
+}

@@ -11,18 +11,39 @@ module.exports = {
                     $ref: '#/components/schemas/id'
                 },
                 required: true,
-                description: 'Delete a done tod-o'
+                description: 'Delete a to-do'
             }
         ],
         responses: {
             '200': {
-                description: 'To-do deleted successfully'
+                description: 'To-do deleted successfully',
+                content: {
+                    'application/json': {
+                        schema: {
+                            $ref: '#/components/schemas/CreateUpdateDeleteResponse'
+                        }
+                    }
+                }
             },
             '404': {
-                description: 'To-do not found'
+                description: 'To-do not found',
+                content: {
+                    'application/json': {
+                        schema: {
+                            $ref: '#/components/schemas/ErrorResponse'
+                        }
+                    }
+                }
             },
             '500': {
-                description: 'Server error'
+                description: 'Server error',
+                content: {
+                    'application/json': {
+                        schema: {
+                            $ref: '#/components/schemas/ErrorResponse'
+                        }
+                    }
+                }
             }
         }
     }

@@ -18,7 +18,7 @@ module.exports = {
       content: {
         'application/json': {
           schema: {
-            $ref: '#/components/schemas/ToDoInput'
+            $ref: '#/components/schemas/ToDoParams'
           }
         }
       }
@@ -26,12 +26,33 @@ module.exports = {
     responses: {
       '200': {
         description: 'To-do updated successfully',
+        content: {
+          'application/json': {
+            schema: {
+              $ref: '#/components/schemas/CreateUpdateDeleteResponse'
+            }
+          }
+        }
       },
       '404': {
         description: 'To-do not found',
+        content: {
+          'application/json': {
+            schema: {
+              $ref: '#/components/schemas/ErrorResponse'
+            }
+          }
+        }
       },
       '500': {
         description: 'Server error',
+        content: {
+          'application/json': {
+            schema: {
+              $ref: '#/components/schemas/ErrorResponse'
+            }
+          }
+        }
       },
     },
   },

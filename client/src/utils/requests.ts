@@ -20,8 +20,8 @@ export function encodeToDoQuery(query: IToDoQuery | undefined): string {
 export function formatToDoQuery(filterBy: IToDoFilterBy = {}, sortBy: ISortBy = defaultSortBy, pagination: IPagination = formatPagination()): IToDoQuery {
     return {
         ...(filterBy || {}),
-        __sp: sortBy.property,
-        __sv: sortBy.value,
+        __sp: sortBy?.property,
+        __sv: sortBy?.value,
         __l: pagination?.pageSize,
         __p: pagination?.page
     };
