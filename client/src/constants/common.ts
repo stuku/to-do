@@ -1,7 +1,7 @@
 import { ESort } from '../enums/common.enum';
 import { EStatus } from '../enums/to-do.enum';
 import { ISortBy } from '@store/reducers/type';
-import { IToDoTableCell } from 'src/components/to-do/table/ToDoTable';
+import { IToDoTableCell } from '../components/to-do/table/ToDoTable';
 import { Status } from '../utils/type';
 
 export const toDoTableHeadCellProps: IToDoTableCell[] = [

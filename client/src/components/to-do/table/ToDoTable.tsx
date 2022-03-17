@@ -5,7 +5,7 @@ import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableContainer from '@mui/material/TableContainer';
 import ToDoCard from './row/ToDoCard';
-import { ToDoListProps } from 'src/components/views/ToDoList';
+import { ToDoListProps } from '../../views/ToDoList';
 import ToDoTableHead from './ToDoTableHead';
 import ToDoTableToolbar from './ToDoTableToolbar';
 import ToDoTablePagination from './ToDoTablePagination';

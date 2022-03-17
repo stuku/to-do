@@ -44,7 +44,9 @@ export interface IGetToDosResponse {
     pagination: IPagination;
 }
 
+export type IUpdateToDoData = Omit<IToDo, '_id'>;
+
 export interface IUpdateToDoPayload {
     id: string;
-    data: Omit<IToDo, '_id'>;
+    data: IUpdateToDoData;
 }

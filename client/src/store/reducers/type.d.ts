@@ -1,5 +1,5 @@
-import { ESort } from "../../enums/common.enum";
-import { IPagination, IToDo, Status } from "../../utils/type";
+import { ESort } from '../../enums/common.enum';
+import { IPagination, IToDo, Status } from '../../utils/type';
 
 export interface IToDoFilterBy {
     _id?: string;

@@ -49,9 +49,10 @@ export function mapBadgeColor(status: Status): 'inherit' | 'primary' | 'secondar
     }
 }
 
-export function unshiftFixLengthArray(element: any, list: any[] = [], length: number = 10): any[] {
+export function unshiftFixLengthArray(element: any, list: any[] = [], targetLength: number = 10): any[] {
     if (!Array.isArray(list) || list.length === 0) return [element];
-    return [element, ...list].slice(0, length);
+    const lengthLessThanTargetLength: boolean = list.length < targetLength;
+    return [element, ...list].slice(0, lengthLessThanTargetLength ? list.length + 1 : targetLength);
 }
 
 export function replaceElementIfExistedArray(element: any, list: any[] = [], compare: Function): any[] {

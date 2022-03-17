@@ -25,7 +25,7 @@ export default function ToDoCard(props: ToDoCardProps): JSX.Element {
   const [isEditing, setIsEditing] = useState<boolean>(false);
   const [newTitle, setNewTitle] = useState<string>(title);
   const [newDescription, setNewDescription] = useState<string>(description);
-  
+
   const handleEditTitle = (text: string): void => setNewTitle(text);
   const handleEditDescription = (text: string): void => setNewDescription(text);
   const handleSave = () => {

@@ -10,6 +10,7 @@ module.exports = {
   testRegex: '(/__tests__/.*|(\\.|/)(test|spec))\\.tsx?$',
   collectCoverageFrom: [
     "src/store/epics/**/*.epic.ts",
+    "src/utils/**/*.ts",
     "!**/__mocks__/**",
     "!**/__tests__/**"
   ],

@@ -17,7 +17,7 @@ Typescript, Express, Mongoose, React, Redux, Redux-Observable, RxJS, Jest and Sw
 
 ## Functional Programming
 
-- Orthogonal, not opposites to OOP
+- Orthogonal, not opposites to iterative
 
 - Eliminate:
 
