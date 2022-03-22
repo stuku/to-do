@@ -2,7 +2,6 @@ import { API_PREFIX } from "@config/apis/prefix";
 import bodyParser from "body-parser";
 import cors from "cors";
 import express, { Express } from "express";
-import { MONGODB_URL } from "./secrets";
 import mongoose from "mongoose";
 import morgan from "morgan";
 import path from "path";
@@ -41,7 +40,7 @@ export class AppServer implements IServer {
     }
 
     protected connectDb(): void {
-        mongoose.connect(MONGODB_URL).catch((error: Error): void => {
+        mongoose.connect(process.env.MONGODB_URL || '').catch((error: Error): void => {
             console.error(`MongoDB connection error. Please make sure MongoDB is running. ${error}`);
         });
     }

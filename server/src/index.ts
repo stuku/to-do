@@ -1,4 +1,8 @@
 import AppServer from "@config/app-server";
 
+if (process.env.NODE_ENV !== 'production') {
+    require('dotenv').config();
+}
+
 export const appServer: AppServer = new AppServer();
-appServer.start(process.env["PORT"] || 49170);
+appServer.start(process.env.PORT || 8080);

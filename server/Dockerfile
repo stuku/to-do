@@ -8,7 +8,7 @@ COPY package*.json ./
 
 RUN npm install
 
-EXPOSE 49170
+EXPOSE 8080
 
 # You can change this
 CMD [ "npm", "run", "dev" ]

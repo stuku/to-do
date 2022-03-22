@@ -1,7 +1,7 @@
 module.exports = {
   servers: [
     {
-      url: 'http://localhost:49170',
+      url: `http://localhost:${process.env.PORT || 8080}`,
       description: 'Local server',
     },
   ],
