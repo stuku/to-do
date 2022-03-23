@@ -9,6 +9,10 @@ Typescript, Express, Mongoose, React, Redux, Redux-Observable, RxJS, Jest and Sw
 
 ### 1. Set up `MONGODB_URL` in `.env` file with `.env.example`.
 
+```
+cp .env.example .env
+```
+
 ### 2. Install dependencies:
 
 ```

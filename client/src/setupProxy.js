@@ -4,7 +4,7 @@ module.exports = function (app) {
   app.use(
     '/api',
     createProxyMiddleware({
-      target: `http://localhost:${process.env.PORT || 8080}`,
+      target: `http://localhost:${process.env.NODE_PORT || 8080}`,
       secure: false,
     })
   );

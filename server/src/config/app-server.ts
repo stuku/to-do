@@ -40,7 +40,7 @@ export class AppServer implements IServer {
     }
 
     protected connectDb(): void {
-        mongoose.connect(process.env.MONGODB_URL || '').catch((error: Error): void => {
+        mongoose.connect(ROUTE_PATH.MONGODB_URL || "").catch((error: Error): void => {
             console.error(`MongoDB connection error. Please make sure MongoDB is running. ${error}`);
         });
     }
