@@ -15,5 +15,5 @@ const {
 
 export default {
     API_DOC: "/api-doc",
-    MONGODB_URL: MONGODB_URL || `mongodb://${DB_USER}:${DB_PASSWORD}@${DB_HOST}:${DB_PORT}/${DB_NAME}`
+    MONGODB_URL: MONGODB_URL || `mongodb://${DB_USER}:${DB_PASSWORD}@${DB_HOST}:${DB_PORT}/${DB_NAME}?authSource=admin`
 }

@@ -13,8 +13,7 @@ Typescript, Express, Mongoose, React, Redux, Redux-Observable, RxJS, Jest and Sw
 
 ```
 cp .env.example .env
-docker compose build
-docker-compose up
+docker-compose up --build
 ```
 
 #

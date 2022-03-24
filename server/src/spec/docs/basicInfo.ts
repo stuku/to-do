@@ -5,7 +5,7 @@ module.exports = {
         title: 'To-Do API',
         description: 'Simple RESTful API in Node.js with TypeScript',
     },
-    host: `localhost:${process.env.NODE_PORT || 8080}`,
+    host: 'localhost:8080',
     basePath: '/',
     schemes: ['http', 'https'],
     consumes: ['application/json'],

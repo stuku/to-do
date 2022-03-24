@@ -6,8 +6,6 @@ services:
     restart: always
     ports:
       - "27017:27017"
-    volumes:
-      - ./tmp/data/db:/data/db
     environment:
       - MONGO_INITDB_ROOT_USERNAME=$MONGODB_USER
       - MONGO_INITDB_ROOT_PASSWORD=$MONGODB_PASSWORD
@@ -29,7 +27,7 @@ services:
       context: ./server
       dockerfile: Dockerfile
     image: to_do_server
-    env_file: ./.env
+    command: sh -c "/wait && npm run dev"
     ports:
       - $NODE_PORT:$NODE_PORT
     volumes:
@@ -40,7 +38,7 @@ services:
     depends_on:
       - mongo
     environment:
-      - DB_HOST=localhost
+      - DB_HOST=mongo
       - DB_USER=$MONGODB_USER
       - DB_PASSWORD=$MONGODB_PASSWORD
       - DB_NAME=$MONGODB_DATABASE
