@@ -1,7 +1,8 @@
 import AppServer from "@config/app-server";
+import path from "path";
 
 if (process.env.NODE_ENV !== "production") {
-    require("dotenv").config();
+    require("dotenv").config({ path: path.resolve(__dirname, "../../../.env") });
 }
 
 export const appServer: AppServer = new AppServer();
